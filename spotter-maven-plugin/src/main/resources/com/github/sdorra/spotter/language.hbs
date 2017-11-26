@@ -1,0 +1,116 @@
+/**
+* The MIT License
+*
+* Copyright 2017 Sebastian Sdorra
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+*/
+
+package {{package}};
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Optional;
+
+/**
+ * generated from {{ url }}
+ */
+public enum Language {
+
+    {{#each languages}}
+    {{#ek this.key}}{{/ek}}(
+        "{{this.key}}",
+        "{{this.value.type}}",
+        "{{this.value.color}}",
+        new String[]{ {{#each this.value.aliases}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
+        new String[]{ {{#each this.value.extensions}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
+        new String[]{ {{#each this.value.filenames}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} }
+    ){{^@last}}, {{/@last}}{{#@last}};{{/@last}}{{/each}}
+
+    private static final Map<String, Language> BY_FILENAME = new HashMap<>();
+    private static final Map<String, Language> BY_EXTENSION = new HashMap<>();
+    private static final Map<String, Language> BY_ALIAS = new HashMap<>();
+
+    static {
+        for (Language language : values()) {
+            for ( String extension : language.extensions ) {
+                BY_EXTENSION.put(extension, language);
+            }
+            for ( String filename : language.filenames ) {
+                BY_FILENAME.put(filename, language);
+            }
+            for ( String alias : language.aliases ) {
+                BY_ALIAS.put(alias, language);
+            }
+        }
+    }
+
+    public static Optional<Language> getByFilename(String filename) {
+        return Optional.ofNullable(BY_FILENAME.get(filename));
+    }
+
+    public static Optional<Language> getByExtension(String extension) {
+        return Optional.ofNullable(BY_EXTENSION.get(extension));
+    }
+
+    public static Optional<Language> getByAlias(String alias) {
+        return Optional.ofNullable(BY_ALIAS.get(alias));
+    }
+
+    private String name;
+    private String type;
+    private String color;
+    private String[] aliases;
+    private String[] extensions;
+    private String[] filenames;
+
+    private Language(String name, String type, String color,  String[] aliases, String[] extensions, String[] filenames){
+        this.name = name;
+        this.type = type;
+        this.color = color;
+        this.aliases = aliases;
+        this.extensions = extensions;
+        this.filenames = filenames;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String[] getExtensions() {
+        return Arrays.copyOf(extensions, extensions.length);
+    }
+
+    public String[] getFilenames() {
+        return Arrays.copyOf(filenames, filenames.length);
+    }
+
+    public String[] getAliases() {
+        return Arrays.copyOf(aliases, aliases.length);
+    }
+}
