@@ -8,6 +8,7 @@
     <artifactId>spotter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <description>Content type detection library</description>
 
     <developers>
         <developer>
