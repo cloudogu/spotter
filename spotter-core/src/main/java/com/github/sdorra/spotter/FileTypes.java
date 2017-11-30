@@ -25,52 +25,46 @@
 
 package com.github.sdorra.spotter;
 
+import com.github.sdorra.spotter.internal.*;
 import org.apache.tika.Tika;
 
-import java.nio.file.Paths;
 import java.util.Optional;
-import com.github.sdorra.spotter.Language;
 
 public class FileTypes {
+
+    private static final byte[] EMPTY_CONTENT = new byte[]{};
 
     private static final String DEFAULT_CONTENT_TYPE = "application/octet-stream";
     private static final String DEFAULT_CONTENT_TYPE_FOR_LANGUAGE = "text/plain";
 
     private static final Tika tika = new Tika();
 
+    private static final LanguageDetectionStrategy PATH_BASED_STRATEGY = new FirstMatchLanguageDetectionStrategy(
+        new FilenameLanguageDetectionStrategy(),
+        new ExtensionLanguageDetectionStrategy()
+    );
+
+    private static final LanguageDetectionStrategy PATH_AND_CONTENT_BASED_STRATEGY = new FirstMatchLanguageDetectionStrategy(
+        new ViModeLanguageDetectorStrategy(),
+        new FilenameLanguageDetectionStrategy(),
+        new ExtensionLanguageDetectionStrategy()
+    );
+
     private FileTypes(){}
 
     public static FileType detect(String path) {
-        String contentType = tika.detect(path);
-        Optional<Language> language = getLanguageByPath(path);
+        return of(tika.detect(path), PATH_BASED_STRATEGY.detect(path, EMPTY_CONTENT));
+    }
+
+    public static FileType detect(String path, byte[] content) {
+        return of(tika.detect(content, path), PATH_AND_CONTENT_BASED_STRATEGY.detect(path, content));
+    }
+
+    private static FileType of(String contentType, Optional<Language> language) {
         if (contentType.equals(DEFAULT_CONTENT_TYPE) && language.isPresent()) {
             contentType = DEFAULT_CONTENT_TYPE_FOR_LANGUAGE;
         }
         return new FileType(new ContentType(contentType), language);
-    }
-
-    private static Optional<Language> getLanguageByPath(String path) {
-        String filename = getFilenameFromPath(path);
-        Optional<Language> byFilename = Language.getByFilename(filename);
-        if (!byFilename.isPresent()) {
-            Optional<String> extension = getExtensionFromFilename(filename);
-            if (extension.isPresent()) {
-                return Language.getByExtension(extension.get());
-            }
-        }
-        return byFilename;
-    }
-
-    private static String getFilenameFromPath(String path) {
-        return Paths.get(path).getFileName().toString();
-    }
-
-    private static Optional<String> getExtensionFromFilename(String filename) {
-        int index = filename.indexOf('.');
-        if (index > 0) {
-            return Optional.of(filename.substring(index));
-        }
-        return Optional.empty();
     }
 
 }

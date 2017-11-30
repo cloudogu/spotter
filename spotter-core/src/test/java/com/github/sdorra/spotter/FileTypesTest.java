@@ -25,8 +25,9 @@
 
 package com.github.sdorra.spotter;
 
-import com.github.sdorra.spotter.Language;
 import org.junit.Test;
+
+import java.io.UnsupportedEncodingException;
 
 import static org.junit.Assert.*;
 
@@ -55,6 +56,12 @@ public class FileTypesTest {
         assertEquals(Language.DOCKERFILE, type.getLanguage().get());
     }
 
-
+    @Test
+    public void testDetectWithViModeLine() throws UnsupportedEncodingException {
+        FileType type = FileTypes.detect("startup", "# vim: set syntax=ruby :".getBytes("UTF-8"));
+        assertEquals("text/plain", type.getContentType().getRaw());
+        assertTrue(type.isText());
+        assertEquals(Language.RUBY, type.getLanguage().get());
+    }
 
 }

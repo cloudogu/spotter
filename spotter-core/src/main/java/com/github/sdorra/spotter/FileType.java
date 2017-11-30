@@ -25,8 +25,6 @@
 
 package com.github.sdorra.spotter;
 
-import com.github.sdorra.spotter.Language;
-
 import java.util.Optional;
 
 public class FileType {

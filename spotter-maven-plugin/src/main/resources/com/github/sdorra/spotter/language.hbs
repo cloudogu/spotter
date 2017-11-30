@@ -25,6 +25,7 @@
 package {{package}};
 
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Optional;
@@ -56,6 +57,8 @@ public enum Language {
             for ( String filename : language.filenames ) {
                 BY_FILENAME.put(filename, language);
             }
+
+            BY_ALIAS.put(language.name.toLowerCase(Locale.ENGLISH), language);
             for ( String alias : language.aliases ) {
                 BY_ALIAS.put(alias, language);
             }

@@ -43,4 +43,10 @@ public class ContentTypeTest {
         assertEquals("plain", contentType.getSecondary());
     }
 
+    @Test
+    public void testToString() {
+        ContentType contentType = new ContentType("text/plain");
+        assertEquals("text/plain", contentType.toString());
+    }
+
 }
