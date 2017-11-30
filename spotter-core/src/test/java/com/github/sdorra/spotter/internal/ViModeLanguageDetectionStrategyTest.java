@@ -11,9 +11,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class ViModeLanguageDetectorStrategyTest {
+public class ViModeLanguageDetectionStrategyTest {
 
-    private final ViModeLanguageDetectorStrategy strategy = new ViModeLanguageDetectorStrategy();
+    private final ViModeLanguageDetectionStrategy strategy = new ViModeLanguageDetectionStrategy();
 
     @Test
     public void testDetect() throws IOException {

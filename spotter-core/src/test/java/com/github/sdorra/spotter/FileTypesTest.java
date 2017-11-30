@@ -64,12 +64,19 @@ public class FileTypesTest {
         assertEquals(Language.RUBY, type.getLanguage().get());
     }
 
-
     @Test
     public void testDetectWithEmacsModeLine() throws UnsupportedEncodingException {
         FileType type = FileTypes.detect("startup", "# -*- mode: ruby -*-".getBytes("UTF-8"));
         assertEquals("text/plain", type.getContentType().getRaw());
         assertTrue(type.isText());
         assertEquals(Language.RUBY, type.getLanguage().get());
+    }
+
+    @Test
+    public void testDetectWithSheBang() throws UnsupportedEncodingException {
+        FileType type = FileTypes.detect("startup", "#!/bin/bash".getBytes("UTF-8"));
+        assertEquals("application/x-sh", type.getContentType().getRaw());
+        assertTrue(type.isText());
+        assertEquals(Language.SHELL, type.getLanguage().get());
     }
 }

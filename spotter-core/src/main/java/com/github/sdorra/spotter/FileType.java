@@ -38,7 +38,7 @@ public class FileType {
     }
 
     public boolean isText() {
-        return "text".equals(contentType.getPrimary());
+        return "text".equals(contentType.getPrimary()) || language.isPresent();
     }
 
     public ContentType getContentType() {
