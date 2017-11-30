@@ -64,4 +64,12 @@ public class FileTypesTest {
         assertEquals(Language.RUBY, type.getLanguage().get());
     }
 
+
+    @Test
+    public void testDetectWithEmacsModeLine() throws UnsupportedEncodingException {
+        FileType type = FileTypes.detect("startup", "# -*- mode: ruby -*-".getBytes("UTF-8"));
+        assertEquals("text/plain", type.getContentType().getRaw());
+        assertTrue(type.isText());
+        assertEquals(Language.RUBY, type.getLanguage().get());
+    }
 }

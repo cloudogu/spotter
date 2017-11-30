@@ -46,6 +46,7 @@ public class FileTypes {
 
     private static final LanguageDetectionStrategy PATH_AND_CONTENT_BASED_STRATEGY = new FirstMatchLanguageDetectionStrategy(
         new ViModeLanguageDetectorStrategy(),
+        new EmacsModeLanguageDetectionStrategy(),
         new FilenameLanguageDetectionStrategy(),
         new ExtensionLanguageDetectionStrategy()
     );
