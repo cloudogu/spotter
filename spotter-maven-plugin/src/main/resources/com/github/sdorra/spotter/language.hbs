@@ -42,12 +42,14 @@ public enum Language {
         "{{this.value.color}}",
         new String[]{ {{#each this.value.aliases}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
         new String[]{ {{#each this.value.extensions}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
-        new String[]{ {{#each this.value.filenames}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} }
+        new String[]{ {{#each this.value.filenames}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
+        new String[]{ {{#each this.value.interpreters}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} }
     ){{^@last}}, {{/@last}}{{#@last}};{{/@last}}{{/each}}
 
     private static final Map<String, Language> BY_FILENAME = new HashMap<>();
     private static final Map<String, Language> BY_EXTENSION = new HashMap<>();
     private static final Map<String, Language> BY_ALIAS = new HashMap<>();
+    private static final Map<String, Language> BY_INTERPRETER = new HashMap<>();
 
     static {
         for (Language language : values()) {
@@ -61,6 +63,10 @@ public enum Language {
             BY_ALIAS.put(language.name.toLowerCase(Locale.ENGLISH), language);
             for ( String alias : language.aliases ) {
                 BY_ALIAS.put(alias, language);
+            }
+
+            for ( String interpreter : language.interpreters ) {
+                BY_INTERPRETER.put(interpreter, language);
             }
         }
     }
@@ -77,20 +83,34 @@ public enum Language {
         return Optional.ofNullable(BY_ALIAS.get(alias));
     }
 
+    public static Optional<Language> getByInterpreter(String interpreter) {
+        return Optional.ofNullable(BY_INTERPRETER.get(interpreter));
+    }
+
     private String name;
     private String type;
     private String color;
     private String[] aliases;
     private String[] extensions;
     private String[] filenames;
+    private String[] interpreters;
 
-    private Language(String name, String type, String color,  String[] aliases, String[] extensions, String[] filenames){
+    private Language(
+        String name,
+        String type,
+        String color,
+        String[] aliases,
+        String[] extensions,
+        String[] filenames,
+        String[] interpreters
+    ){
         this.name = name;
         this.type = type;
         this.color = color;
         this.aliases = aliases;
         this.extensions = extensions;
         this.filenames = filenames;
+        this.interpreters = interpreters;
     }
 
     public String getName() {
@@ -115,5 +135,9 @@ public enum Language {
 
     public String[] getAliases() {
         return Arrays.copyOf(aliases, aliases.length);
+    }
+
+    public String[] getInterpreters() {
+        return Arrays.copyOf(interpreters, interpreters.length);
     }
 }

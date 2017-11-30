@@ -34,6 +34,7 @@ public class Language {
     private List<String> aliases;
     private List<String> extensions;
     private List<String> filenames;
+    private List<String> interpreters;
 
     public String getType() {
         return type;
@@ -53,5 +54,9 @@ public class Language {
 
     public List<String> getFilenames() {
         return filenames;
+    }
+
+    public List<String> getInterpreters() {
+        return interpreters;
     }
 }
