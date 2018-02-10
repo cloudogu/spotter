@@ -11,6 +11,24 @@ Spotter uses [Apache Tika](https://tika.apache.org/) for the content type recogn
 
 ## Usage
 
+Add the latest stable version of to the dependency management tool of your choice.
+
+E.g. for maven:
+
+```xml
+<dependency>
+    <groupId>com.github.sdorra</groupId>
+    <artifactId>spotter-core</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+Use the latest version from maven central: [![Maven Central](https://img.shields.io/maven-central/v/com.github.sdorra/spotter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spotter%22)
+
+### Examples
+
+Detect the content type and the programming language of a file:
+
 ```java
 ContentType contentType = ContentTypes.detect("com/github/sdorra/spotter/Language.java");
 System.out.println("Content-Type: " + contentType);
