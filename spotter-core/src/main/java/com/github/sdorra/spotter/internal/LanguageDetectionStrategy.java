@@ -29,8 +29,19 @@ import com.github.sdorra.spotter.Language;
 
 import java.util.Optional;
 
+/**
+ * Strategy for detecting the {@link Language} of content.
+ */
 public interface LanguageDetectionStrategy {
 
+    /**
+     * Detects the language of the path and or the content.
+     *
+     * @param path content path
+     * @param content first few bytes of content
+     *
+     * @return optional language of content
+     */
     Optional<Language> detect(String path, byte[] content);
 
 }

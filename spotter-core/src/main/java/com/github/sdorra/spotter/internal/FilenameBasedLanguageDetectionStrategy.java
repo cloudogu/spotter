@@ -30,6 +30,9 @@ import com.github.sdorra.spotter.Language;
 import java.nio.file.Paths;
 import java.util.Optional;
 
+/**
+ * Base class for filename based detection strategies.
+ */
 public abstract class FilenameBasedLanguageDetectionStrategy implements LanguageDetectionStrategy {
 
     @Override

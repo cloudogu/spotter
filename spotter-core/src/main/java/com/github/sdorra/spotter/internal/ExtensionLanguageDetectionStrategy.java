@@ -29,6 +29,9 @@ import com.github.sdorra.spotter.Language;
 
 import java.util.Optional;
 
+/**
+ * Detects the language of a content, by using the extension of the filename.
+ */
 public class ExtensionLanguageDetectionStrategy extends FilenameBasedLanguageDetectionStrategy {
 
     @Override

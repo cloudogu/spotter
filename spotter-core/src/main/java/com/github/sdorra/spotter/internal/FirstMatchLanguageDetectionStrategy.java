@@ -29,10 +29,19 @@ import com.github.sdorra.spotter.Language;
 
 import java.util.Optional;
 
+/**
+ * The {@link FirstMatchLanguageDetectionStrategy} iterates over multiple {@link LanguageDetectionStrategy} and returns
+ * the first result of a matching strategy.
+ */
 public class FirstMatchLanguageDetectionStrategy implements LanguageDetectionStrategy {
 
     private LanguageDetectionStrategy[] strategies;
 
+    /**
+     * Creates a new {@link FirstMatchLanguageDetectionStrategy}.
+     *
+     * @param strategies array of strategies
+     */
     public FirstMatchLanguageDetectionStrategy(LanguageDetectionStrategy... strategies) {
         this.strategies = strategies;
     }

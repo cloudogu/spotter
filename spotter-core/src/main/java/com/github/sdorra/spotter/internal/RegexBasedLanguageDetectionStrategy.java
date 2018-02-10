@@ -30,11 +30,20 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Base class for regex based detection strategies.
+ */
 public class RegexBasedLanguageDetectionStrategy extends StringContentBasedLanguageDetectionStrategy {
 
     private final Pattern linePattern;
     private final Pattern langPattern;
 
+    /**
+     * Creates a new regex base language strategy.
+     *
+     * @param linePattern pattern to match the line
+     * @param langPattern pattern to match the language within the line
+     */
     public RegexBasedLanguageDetectionStrategy(Pattern linePattern, Pattern langPattern) {
         this.linePattern = linePattern;
         this.langPattern = langPattern;

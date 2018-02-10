@@ -28,7 +28,13 @@ import com.github.sdorra.spotter.Language;
 
 import java.util.Optional;
 
+/**
+ * Detects the language of the content by using the unix shebang line.
+ *
+ * @see <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">Shebang</a>
+ */
 public class ShebangLanguageDetectionStrategy extends FirstLineBaseLanguageDetectionStrategy {
+
     @Override
     protected Optional<Language> detectByFirstLine(String firstLine) {
         if (hasShebang(firstLine)) {

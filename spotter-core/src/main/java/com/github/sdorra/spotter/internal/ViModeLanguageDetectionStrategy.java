@@ -26,12 +26,18 @@ package com.github.sdorra.spotter.internal;
 
 import java.util.regex.Pattern;
 
+/**
+ * Language detection strategy, which uses the mode line of the vi editor.
+ */
 public class ViModeLanguageDetectionStrategy extends RegexBasedLanguageDetectionStrategy {
 
     private static final Pattern LINE_PATTERN = Pattern.compile("(?:(?m:\\s|^)vi(?:m[<=>]?\\d+|m)?|[\\t\\x20]*ex)\\s*[:]\\s*(.*)(?m:$)");
 
     private static final Pattern LANG_PATTERN = Pattern.compile("(?i:filetype|ft|syntax)\\s*=(\\w+)(?:\\s|:|$)");
 
+    /**
+     * Creates a new {@link ViModeLanguageDetectionStrategy}.
+     */
     public ViModeLanguageDetectionStrategy() {
         super(LINE_PATTERN, LANG_PATTERN);
     }

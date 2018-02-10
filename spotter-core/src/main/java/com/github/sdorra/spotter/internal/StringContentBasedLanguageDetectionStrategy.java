@@ -28,6 +28,9 @@ import com.github.sdorra.spotter.Language;
 
 import java.util.Optional;
 
+/**
+ * Base class for string based content detection strategies.
+ */
 public abstract class StringContentBasedLanguageDetectionStrategy implements LanguageDetectionStrategy {
     @Override
     public Optional<Language> detect(String path, byte[] content) {
