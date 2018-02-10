@@ -268,7 +268,7 @@
         https://github.com/trautonen/coveralls-maven-plugin/issues/102
         -->
         <profile>
-            <id>ci</id>
+            <id>coveralls</id>
             <build>
                 <plugins>
 
