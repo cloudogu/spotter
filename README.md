@@ -7,12 +7,10 @@ Spotter uses [Apache Tika](https://tika.apache.org/) for the content type recogn
 ## Usage
 
 ```java
-FileType fileType = FileTypes.detect("com/github/sdorra/spotter/Language.java");
-
-ContentType contentType = fileType.getContentType();
+ContentType contentType = ContentTypes.detect("com/github/sdorra/spotter/Language.java");
 System.out.println("Content-Type: " + contentType);
 
-Optional<Language> language = fileType.getLanguage();
+Optional<Language> language = contentType.getLanguage();
 if (language.isPresent()) {
     System.out.println("Language    : " + language.get().getName());
 }

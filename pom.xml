@@ -282,7 +282,7 @@
     <profiles>
 
         <!--
-        Disable coveralls for now, because of 
+        Disable coveralls for now, because of
         https://github.com/trautonen/coveralls-maven-plugin/issues/102
         -->
         <profile>
