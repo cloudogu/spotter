@@ -279,12 +279,45 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-    <!--
-    Use GPG signatures for release builds.
-    http://central.sonatype.org/pages/apache-maven.html
-    -->
-
     <profiles>
+
+        <!--
+        Disable coveralls for now, because of 
+        https://github.com/trautonen/coveralls-maven-plugin/issues/102
+        -->
+        <profile>
+            <id>ci</id>
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.7.6.201602180812</version>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.eluder.coveralls</groupId>
+                        <artifactId>coveralls-maven-plugin</artifactId>
+                        <version>4.2.0</version>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+
+        <!--
+        Use GPG signatures for release builds.
+        http://central.sonatype.org/pages/apache-maven.html
+        -->
         <profile>
             <id>release-sign-artifacts</id>
             <activation>
