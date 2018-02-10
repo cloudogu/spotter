@@ -23,14 +23,12 @@
   ~ THE SOFTWARE.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.sdorra</groupId>
     <artifactId>spotter</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>Spotter</name>
     <description>Content type detection library</description>
@@ -57,7 +55,7 @@
         <connection>scm:git:git@github.com:sdorra/spotter.git</connection>
         <developerConnection>scm:git:git@github.com:sdorra/spotter.git</developerConnection>
         <url>git@github.com:sdorra/spotter.git</url>
-        <tag>HEAD</tag>
+        <tag>1.0.0</tag>
     </scm>
 
     <issueManagement>
@@ -257,7 +255,7 @@
 
     <properties>
         <!-- set empty argLine parameter for jacoco to avoid failing tests without jacoco -->
-        <argLine></argLine>
+        <argLine />
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
