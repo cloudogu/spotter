@@ -1,9 +1,4 @@
 ---
 language: java
-
-install:
-  - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-script:
-  - mvn jacoco:prepare-agent test jacoco:report
 after_success:
-  - mvn coveralls:report
+  - mvn clean jacoco:prepare-agent test jacoco:report coveralls:report
