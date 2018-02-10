@@ -1,0 +1,31 @@
+Java:
+  type: programming
+  ace_mode: java
+  codemirror_mode: clike
+  codemirror_mime_type: text/x-java
+  color: "#b07219"
+  extensions:
+  - ".java"
+  language_id: 181
+Go:
+  type: programming
+  color: "#375eab"
+  aliases:
+  - golang
+  extensions:
+  - ".go"
+  ace_mode: golang
+  codemirror_mode: go
+  codemirror_mime_type: text/x-go
+  language_id: 132
+Dockerfile:
+  type: data
+  tm_scope: source.dockerfile
+  extensions:
+  - ".dockerfile"
+  filenames:
+  - Dockerfile
+  ace_mode: dockerfile
+  codemirror_mode: dockerfile
+  codemirror_mime_type: text/x-dockerfile
+  language_id: 89
