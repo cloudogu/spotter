@@ -30,7 +30,11 @@ import org.apache.tika.Tika;
 
 import java.util.Optional;
 
-public class FileTypes {
+/**
+ * ContentTypes is able to detect the {@link ContentType} of content. ContentTypes uses different strategies to detect
+ * the type of a content.
+ */
+public final class ContentTypes {
 
     private static final byte[] EMPTY_CONTENT = new byte[]{};
 
@@ -52,21 +56,36 @@ public class FileTypes {
         new ExtensionLanguageDetectionStrategy()
     );
 
-    private FileTypes(){}
+    private ContentTypes(){}
 
-    public static FileType detect(String path) {
+    /**
+     * Detects the {@link ContentType} of the given path, by only using path based strategies.
+     *
+     * @param path path of the content
+     *
+     * @return {@link ContentType} of path
+     */
+    public static ContentType detect(String path) {
         return of(tika.detect(path), PATH_BASED_STRATEGY.detect(path, EMPTY_CONTENT));
     }
 
-    public static FileType detect(String path, byte[] content) {
-        return of(tika.detect(content, path), PATH_AND_CONTENT_BASED_STRATEGY.detect(path, content));
+    /**
+     * Detects the {@link ContentType} of the given path, by using path and content based strategies.
+     *
+     * @param path path of the content
+     * @param contentPrefix first few bytes of the content
+     *
+     * @return {@link ContentType} of path and content prefix
+     */
+    public static ContentType detect(String path, byte[] contentPrefix) {
+        return of(tika.detect(contentPrefix, path), PATH_AND_CONTENT_BASED_STRATEGY.detect(path, contentPrefix));
     }
 
-    private static FileType of(String contentType, Optional<Language> language) {
+    private static ContentType of(String contentType, Optional<Language> language) {
         if (contentType.equals(DEFAULT_CONTENT_TYPE) && language.isPresent()) {
             contentType = DEFAULT_CONTENT_TYPE_FOR_LANGUAGE;
         }
-        return new FileType(new ContentType(contentType), language);
+        return new ContentType(contentType, language);
     }
 
 }

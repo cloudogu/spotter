@@ -31,51 +31,51 @@ import java.io.UnsupportedEncodingException;
 
 import static org.junit.Assert.*;
 
-public class FileTypesTest {
+public class ContentTypesTest {
 
     @Test
     public void testDetectWithJavaFile() {
-        FileType type = FileTypes.detect("com/github/sdorra/Language.java");
-        assertEquals("text/x-java-source", type.getContentType().getRaw());
+        ContentType type = ContentTypes.detect("com/github/sdorra/Language.java");
+        assertEquals("text/x-java-source", type.getRaw());
         assertEquals(Language.JAVA, type.getLanguage().get());
     }
 
     @Test
     public void testDetectWithImage() {
-        FileType type = FileTypes.detect("com/github/sdorra/scm-manager.png");
-        assertEquals("image/png", type.getContentType().getRaw());
+        ContentType type = ContentTypes.detect("com/github/sdorra/scm-manager.png");
+        assertEquals("image/png", type.getRaw());
         assertFalse(type.isText());
         assertFalse(type.getLanguage().isPresent());
     }
 
     @Test
     public void testDetectWithDockerfile() {
-        FileType type = FileTypes.detect("Dockerfile");
-        assertEquals("text/plain", type.getContentType().getRaw());
+        ContentType type = ContentTypes.detect("Dockerfile");
+        assertEquals("text/plain", type.getRaw());
         assertTrue(type.isText());
         assertEquals(Language.DOCKERFILE, type.getLanguage().get());
     }
 
     @Test
     public void testDetectWithViModeLine() throws UnsupportedEncodingException {
-        FileType type = FileTypes.detect("startup", "# vim: set syntax=ruby :".getBytes("UTF-8"));
-        assertEquals("text/plain", type.getContentType().getRaw());
+        ContentType type = ContentTypes.detect("startup", "# vim: set syntax=ruby :".getBytes("UTF-8"));
+        assertEquals("text/plain", type.getRaw());
         assertTrue(type.isText());
         assertEquals(Language.RUBY, type.getLanguage().get());
     }
 
     @Test
     public void testDetectWithEmacsModeLine() throws UnsupportedEncodingException {
-        FileType type = FileTypes.detect("startup", "# -*- mode: ruby -*-".getBytes("UTF-8"));
-        assertEquals("text/plain", type.getContentType().getRaw());
+        ContentType type = ContentTypes.detect("startup", "# -*- mode: ruby -*-".getBytes("UTF-8"));
+        assertEquals("text/plain", type.getRaw());
         assertTrue(type.isText());
         assertEquals(Language.RUBY, type.getLanguage().get());
     }
 
     @Test
     public void testDetectWithSheBang() throws UnsupportedEncodingException {
-        FileType type = FileTypes.detect("startup", "#!/bin/bash".getBytes("UTF-8"));
-        assertEquals("application/x-sh", type.getContentType().getRaw());
+        ContentType type = ContentTypes.detect("startup", "#!/bin/bash".getBytes("UTF-8"));
+        assertEquals("application/x-sh", type.getRaw());
         assertTrue(type.isText());
         assertEquals(Language.SHELL, type.getLanguage().get());
     }
