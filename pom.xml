@@ -31,7 +31,7 @@
     <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Spotter</name>
-    <description>Content type detection library</description>
+    <description>Content-Type and language recognition library</description>
     <url>https://github.com/sdorra/spotter</url>
 
     <licenses>
