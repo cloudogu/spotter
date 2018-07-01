@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.org/sdorra/spotter.svg?branch=master)](https://travis-ci.org/sdorra/spotter)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.sdorra/spotter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spotter%22)
-[![Quality Gates](https://sonarcloud.io/api/badges/gate?key=com.github.sdorra%3Aspotter)](https://sonarcloud.io/dashboard?id=com.github.sdorra%3Aspotter)
-[![Coverage](https://sonarcloud.io/api/badges/measure?key=com.github.sdorra%3Aspotter&metric=coverage)](https://sonarcloud.io/dashboard?id=com.github.sdorra%3Aspotter)
+[![Quality Gates](https://sonarcloud.io/api/project_badges/measure?project=com.github.sdorra%3Aspotter&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.sdorra%3Aspotter)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.github.sdorra%3Aspotter&metric=coverage)](https://sonarcloud.io/dashboard?id=com.github.sdorra%3Aspotter)
 
 Spotter is a library which is able to detect the content type of a file. 
 It is also able to detect the programming language of source files. 
