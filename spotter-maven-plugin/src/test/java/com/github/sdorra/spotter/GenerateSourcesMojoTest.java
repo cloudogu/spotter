@@ -71,6 +71,7 @@ public class GenerateSourcesMojoTest {
         URL url = Resources.getResource("com/github/sdorra/spotter/languages.yml");
         mojo.setLanguagesUrl(url.toExternalForm());
         mojo.setPackageName("demo");
+        mojo.setLanguagesVersion("v1.0.0");
 
         mojo.execute();
 
@@ -81,6 +82,7 @@ public class GenerateSourcesMojoTest {
         try (URLClassLoader classLoader = createClassLoader(directory)){
             Class<?> languageClass = classLoader.loadClass("demo.Language");
             assertTrue(languageClass.isEnum());
+            assertEquals("v1.0.0", languageClass.getDeclaredField("VERSION").get(null));
             assertEquals(3, languageClass.getEnumConstants().length);
         }
     }

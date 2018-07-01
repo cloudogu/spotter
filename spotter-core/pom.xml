@@ -67,6 +67,9 @@
                 <groupId>com.github.sdorra</groupId>
                 <artifactId>spotter-maven-plugin</artifactId>
                 <version>${project.version}</version>
+                <configuration>
+                    <languagesVersion>v6.2.0</languagesVersion>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -79,8 +82,5 @@
 
         </plugins>
     </build>
-
-    <properties>
-    </properties>
 
 </project>

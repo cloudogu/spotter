@@ -46,6 +46,8 @@ public enum Language {
         new String[]{ {{#each this.value.interpreters}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} }
     ){{^@last}}, {{/@last}}{{#@last}};{{/@last}}{{/each}}
 
+    public static final String VERSION = "{{ version }}";
+
     private static final Map<String, Language> BY_FILENAME = new HashMap<>();
     private static final Map<String, Language> BY_EXTENSION = new HashMap<>();
     private static final Map<String, Language> BY_ALIAS = new HashMap<>();

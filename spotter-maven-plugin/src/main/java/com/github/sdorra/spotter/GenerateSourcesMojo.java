@@ -32,6 +32,7 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Template;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Strings;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -58,7 +59,7 @@ public class GenerateSourcesMojo extends AbstractMojo {
 
     private static final String TEMPLATE = "com/github/sdorra/spotter/language";
 
-    private static final String LANGUAGES_URL = "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml";
+    private static final String LANGUAGES_URL_TEMPLATE = "https://raw.githubusercontent.com/github/linguist/%s/lib/linguist/languages.yml";
 
     @Parameter
     private String packageName = PACKAGE;
@@ -67,7 +68,10 @@ public class GenerateSourcesMojo extends AbstractMojo {
     private String outputPath;
 
     @Parameter
-    private String languagesUrl = LANGUAGES_URL;
+    private String languagesUrl;
+
+    @Parameter(defaultValue = "master")
+    private String languagesVersion;
 
     @Parameter(readonly = true, required = true, defaultValue = "${project}")
     private MavenProject project;
@@ -87,6 +91,11 @@ public class GenerateSourcesMojo extends AbstractMojo {
         this.packageName = packageName;
     }
 
+    @VisibleForTesting
+    void setLanguagesVersion(String languagesVersion) {
+        this.languagesVersion = languagesVersion;
+    }
+
     @Override
     public void execute() throws MojoExecutionException {
         getLog().info("generate spotter sources " + outputPath);
@@ -95,7 +104,10 @@ public class GenerateSourcesMojo extends AbstractMojo {
         try {
             Template template = readTemplate(TEMPLATE);
 
-            Languages languages = loadLanguages(languagesUrl);
+            String url = createLanguagesUrl();
+            getLog().info("download languages file from " + url);
+
+            Languages languages = loadLanguages(url);
             Map<String, Object> model = createModel(languages);
 
             String packagePath = packageName.replaceAll("\\.", "/");
@@ -114,11 +126,19 @@ public class GenerateSourcesMojo extends AbstractMojo {
         }
     }
 
+    private String createLanguagesUrl() {
+        if (Strings.isNullOrEmpty(languagesUrl)) {
+            return String.format(LANGUAGES_URL_TEMPLATE, languagesVersion);
+        }
+        return languagesUrl;
+    }
+
     private Map<String,Object> createModel(Languages languages) {
         Map<String,Object> model = new LinkedHashMap<>();
         model.put("languages", new ArrayList<>(languages.entrySet()));
         model.put("package", packageName);
         model.put("url", languagesUrl);
+        model.put("version", languagesVersion);
         return model;
     }
 
