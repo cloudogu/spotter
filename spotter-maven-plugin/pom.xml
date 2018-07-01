@@ -29,12 +29,12 @@
     <parent>
         <groupId>com.github.sdorra</groupId>
         <artifactId>spotter</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.1.0</version>
     </parent>
 
     <groupId>com.github.sdorra</groupId>
     <artifactId>spotter-maven-plugin</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.1.0</version>
     <packaging>maven-plugin</packaging>
 
     <prerequisites>
