@@ -31,7 +31,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Detects the language of a content, by using the extension of the filename.
+ * Detects languages of content, by using extension of filename.
  */
 public class ExtensionLanguageDetectionStrategy extends FilenameBasedLanguageDetectionStrategy {
 

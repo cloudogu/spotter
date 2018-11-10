@@ -29,7 +29,7 @@ import com.github.sdorra.spotter.Language;
 import java.util.List;
 
 /**
- * Detects the language of the content, by using the filename.
+ * Detects languages of content, by using the filename.
  */
 public class FilenameLanguageDetectionStrategy extends FilenameBasedLanguageDetectionStrategy {
 

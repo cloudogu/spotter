@@ -25,21 +25,38 @@
 
 package com.github.sdorra.spotter.internal;
 
-import java.util.regex.Pattern;
+import com.github.sdorra.spotter.Language;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 /**
- * Detects languages of content, by using emacs mode line of the content.
+ * The {@link FirstMatchMathingStrategy} iterates over multiple {@link LanguageDetectionStrategy} and returns
+ * the first result of a matching strategy.
  */
-public class EmacsModeLanguageDetectionStrategy extends RegexBasedLanguageDetectionStrategy {
+public class FirstMatchMathingStrategy implements MatchingStrategy {
 
-    private static final Pattern PATTERN_LINE = Pattern.compile(".*-\\*-\\s*(.+?)\\s*-\\*-.*(?m:$)");
-
-    private static final Pattern PATTERN_LANG = Pattern.compile(".*(?i:mode)\\s*:\\s*([^\\s;]+)\\s*;*.*");
+    private LanguageDetectionStrategy[] strategies;
 
     /**
-     * Creates new {@link EmacsModeLanguageDetectionStrategy}.
+     * Creates a new {@link FirstMatchMathingStrategy}.
+     *
+     * @param strategies array of strategies
      */
-    public EmacsModeLanguageDetectionStrategy() {
-        super(PATTERN_LINE, PATTERN_LANG);
+    public FirstMatchMathingStrategy(LanguageDetectionStrategy... strategies) {
+        this.strategies = strategies;
     }
+
+    @Override
+    public Optional<Language> detect(String path, byte[] content) {
+        for (LanguageDetectionStrategy strategy : strategies) {
+            List<Language> lang = strategy.detect(path, content);
+            if (!lang.isEmpty()) {
+                return Optional.of(lang.get(0));
+            }
+        }
+        return Optional.empty();
+    }
+
 }

@@ -28,8 +28,6 @@ package com.github.sdorra.spotter;
 import com.github.sdorra.spotter.internal.*;
 import org.apache.tika.Tika;
 
-import javax.swing.text.html.Option;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -45,12 +43,12 @@ public final class ContentTypes {
 
     private static final Tika tika = new Tika();
 
-    private static final LanguageDetectionStrategy PATH_BASED_STRATEGY = new FirstMatchLanguageDetectionStrategy(
+    private static final MatchingStrategy PATH_BASED_STRATEGY = new FirstMatchMathingStrategy(
         new FilenameLanguageDetectionStrategy(),
         new ExtensionLanguageDetectionStrategy()
     );
 
-    private static final LanguageDetectionStrategy PATH_AND_CONTENT_BASED_STRATEGY = new FirstMatchLanguageDetectionStrategy(
+    private static final MatchingStrategy PATH_AND_CONTENT_BASED_STRATEGY = new FirstMatchMathingStrategy(
         new ViModeLanguageDetectionStrategy(),
         new EmacsModeLanguageDetectionStrategy(),
         new ShebangLanguageDetectionStrategy(),
@@ -83,18 +81,12 @@ public final class ContentTypes {
         return of(tika.detect(contentPrefix, path), PATH_AND_CONTENT_BASED_STRATEGY.detect(path, contentPrefix));
     }
 
-    private static ContentType of(String contentType, List<Language> languages) {
-        if (contentType.equals(DEFAULT_CONTENT_TYPE) && !languages.isEmpty()) {
+    private static ContentType of(String contentType, Optional<Language> language) {
+        if (contentType.equals(DEFAULT_CONTENT_TYPE) && language.isPresent()) {
             contentType = DEFAULT_CONTENT_TYPE_FOR_LANGUAGE;
         }
-        return new ContentType(contentType, firstEntry(languages));
+        return new ContentType(contentType, language);
     }
 
-    private static <T> Optional<T> firstEntry(List<T> list) {
-        if (list.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(list.get(0));
-    }
 
 }

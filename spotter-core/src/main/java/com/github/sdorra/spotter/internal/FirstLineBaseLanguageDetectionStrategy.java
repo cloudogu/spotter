@@ -30,7 +30,7 @@ import com.github.sdorra.spotter.Language;
 import java.util.List;
 
 /**
- * Base class for content detection strategies, which are using the first line of the file.
+ * Base class for content detection strategies, which are using the first line of the content.
  */
 public abstract class FirstLineBaseLanguageDetectionStrategy extends StringContentBasedLanguageDetectionStrategy {
     @Override

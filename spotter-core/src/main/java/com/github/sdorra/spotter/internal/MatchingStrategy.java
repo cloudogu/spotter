@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Sebastian Sdorra
+ * Copyright 2018 Sebastian Sdorra
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,40 +22,14 @@
  * THE SOFTWARE.
  */
 
-
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
-/**
- * The {@link FirstMatchLanguageDetectionStrategy} iterates over multiple {@link LanguageDetectionStrategy} and returns
- * the first result of a matching strategy.
- */
-public class FirstMatchLanguageDetectionStrategy implements LanguageDetectionStrategy {
+public interface MatchingStrategy {
 
-    private LanguageDetectionStrategy[] strategies;
+    Optional<Language> detect(String path, byte[] content);
 
-    /**
-     * Creates a new {@link FirstMatchLanguageDetectionStrategy}.
-     *
-     * @param strategies array of strategies
-     */
-    public FirstMatchLanguageDetectionStrategy(LanguageDetectionStrategy... strategies) {
-        this.strategies = strategies;
-    }
-
-    @Override
-    public List<Language> detect(String path, byte[] content) {
-        for (LanguageDetectionStrategy strategy : strategies) {
-            List<Language> lang = strategy.detect(path, content);
-            if (!lang.isEmpty()) {
-                return lang;
-            }
-        }
-        return Collections.emptyList();
-    }
 }
