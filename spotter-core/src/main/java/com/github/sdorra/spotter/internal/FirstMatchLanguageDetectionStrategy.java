@@ -27,6 +27,8 @@ package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -47,13 +49,13 @@ public class FirstMatchLanguageDetectionStrategy implements LanguageDetectionStr
     }
 
     @Override
-    public Optional<Language> detect(String path, byte[] content) {
+    public List<Language> detect(String path, byte[] content) {
         for (LanguageDetectionStrategy strategy : strategies) {
-            Optional<Language> lang = strategy.detect(path, content);
-            if (lang.isPresent()) {
+            List<Language> lang = strategy.detect(path, content);
+            if (!lang.isEmpty()) {
                 return lang;
             }
         }
-        return Optional.empty();
+        return Collections.emptyList();
     }
 }

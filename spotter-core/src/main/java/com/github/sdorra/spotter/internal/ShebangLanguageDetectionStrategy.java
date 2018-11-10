@@ -26,6 +26,8 @@ package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -36,12 +38,12 @@ import java.util.Optional;
 public class ShebangLanguageDetectionStrategy extends FirstLineBaseLanguageDetectionStrategy {
 
     @Override
-    protected Optional<Language> detectByFirstLine(String firstLine) {
+    protected List<Language> detectByFirstLine(String firstLine) {
         if (hasShebang(firstLine)) {
             String interpreter = getInterpreterFromShebangLine(firstLine);
             return Language.getByInterpreter(interpreter);
         }
-        return Optional.empty();
+        return Collections.emptyList();
     }
 
     private String getInterpreterFromShebangLine(String line) {

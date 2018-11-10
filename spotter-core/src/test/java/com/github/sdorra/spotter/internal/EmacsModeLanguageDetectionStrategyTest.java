@@ -27,9 +27,10 @@ package com.github.sdorra.spotter.internal;
 import com.github.sdorra.spotter.Language;
 import org.junit.Test;
 
-import java.util.Optional;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class EmacsModeLanguageDetectionStrategyTest {
 
@@ -37,9 +38,8 @@ public class EmacsModeLanguageDetectionStrategyTest {
 
     @Test
     public void testDetect() {
-        Optional<Language> optional = strategy.detectByContent("# -*- mode: ruby -*-");
-        assertTrue(optional.isPresent());
-        assertEquals(Language.RUBY, optional.get());
+        List<Language> languages = strategy.detectByContent("# -*- mode: ruby -*-");
+        assertThat(languages).contains(Language.RUBY);
     }
 
 }

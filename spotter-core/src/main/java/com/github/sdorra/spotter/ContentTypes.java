@@ -28,6 +28,8 @@ package com.github.sdorra.spotter;
 import com.github.sdorra.spotter.internal.*;
 import org.apache.tika.Tika;
 
+import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -81,11 +83,18 @@ public final class ContentTypes {
         return of(tika.detect(contentPrefix, path), PATH_AND_CONTENT_BASED_STRATEGY.detect(path, contentPrefix));
     }
 
-    private static ContentType of(String contentType, Optional<Language> language) {
-        if (contentType.equals(DEFAULT_CONTENT_TYPE) && language.isPresent()) {
+    private static ContentType of(String contentType, List<Language> languages) {
+        if (contentType.equals(DEFAULT_CONTENT_TYPE) && !languages.isEmpty()) {
             contentType = DEFAULT_CONTENT_TYPE_FOR_LANGUAGE;
         }
-        return new ContentType(contentType, language);
+        return new ContentType(contentType, firstEntry(languages));
+    }
+
+    private static <T> Optional<T> firstEntry(List<T> list) {
+        if (list.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(list.get(0));
     }
 
 }

@@ -157,6 +157,7 @@ public class GenerateSourcesMojo extends AbstractMojo {
                     s.toUpperCase(Locale.ENGLISH)
                             .replaceAll("#", "_SHARP")
                             .replaceAll("\\+\\+", "_PLUS")
+                            .replaceAll("\\*", "_STAR")
                             .replaceAll("^[0-9]", "")
                             .replaceAll("[\\s-#'.+()]", "_")
 

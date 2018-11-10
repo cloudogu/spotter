@@ -27,9 +27,10 @@ package com.github.sdorra.spotter.internal;
 import com.github.sdorra.spotter.Language;
 import org.junit.Test;
 
-import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class FirstLineBaseLanguageDetectionStrategyTest {
 
@@ -58,9 +59,9 @@ public class FirstLineBaseLanguageDetectionStrategyTest {
         private String firstLine;
 
         @Override
-        protected Optional<Language> detectByFirstLine(String firstLine) {
+        protected List<Language> detectByFirstLine(String firstLine) {
             this.firstLine = firstLine;
-            return Optional.empty();
+            return Collections.emptyList();
         }
     }
 

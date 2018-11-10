@@ -29,6 +29,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * generated from {{ url }}
@@ -48,10 +51,10 @@ public enum Language {
 
     public static final String VERSION = "{{ version }}";
 
-    private static final Map<String, Language> BY_FILENAME = new HashMap<>();
-    private static final Map<String, Language> BY_EXTENSION = new HashMap<>();
-    private static final Map<String, Language> BY_ALIAS = new HashMap<>();
-    private static final Map<String, Language> BY_INTERPRETER = new HashMap<>();
+    private static final LanguageMap BY_FILENAME = new LanguageMap();
+    private static final LanguageMap BY_EXTENSION = new LanguageMap();
+    private static final LanguageMap BY_ALIAS = new LanguageMap();
+    private static final LanguageMap BY_INTERPRETER = new LanguageMap();
 
     static {
         for (Language language : values()) {
@@ -73,20 +76,20 @@ public enum Language {
         }
     }
 
-    public static Optional<Language> getByFilename(String filename) {
-        return Optional.ofNullable(BY_FILENAME.get(filename));
+    public static List<Language> getByFilename(String filename) {
+        return BY_FILENAME.get(filename);
     }
 
-    public static Optional<Language> getByExtension(String extension) {
-        return Optional.ofNullable(BY_EXTENSION.get(extension));
+    public static List<Language> getByExtension(String extension) {
+        return BY_EXTENSION.get(extension);
     }
 
-    public static Optional<Language> getByAlias(String alias) {
-        return Optional.ofNullable(BY_ALIAS.get(alias));
+    public static List<Language> getByAlias(String alias) {
+        return BY_ALIAS.get(alias);
     }
 
-    public static Optional<Language> getByInterpreter(String interpreter) {
-        return Optional.ofNullable(BY_INTERPRETER.get(interpreter));
+    public static List<Language> getByInterpreter(String interpreter) {
+        return BY_INTERPRETER.get(interpreter);
     }
 
     private String name;
@@ -141,5 +144,28 @@ public enum Language {
 
     public String[] getInterpreters() {
         return Arrays.copyOf(interpreters, interpreters.length);
+    }
+
+    private static class LanguageMap {
+
+        private final Map<String, List<Language>> map = new HashMap<>();
+
+        public List<Language> get(String key) {
+            List<Language> values = map.get(key);
+            if (values != null) {
+                return Collections.unmodifiableList(values);
+            }
+            return Collections.emptyList();
+        }
+
+        public void put(String key, Language lang) {
+            List<Language> values = map.get(key);
+            if (values == null) {
+                values = new ArrayList<>();
+                map.put(key, values);
+            }
+            values.add(lang);
+        }
+
     }
 }

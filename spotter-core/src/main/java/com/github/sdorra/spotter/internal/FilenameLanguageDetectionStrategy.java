@@ -26,8 +26,7 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
-
-import java.util.Optional;
+import java.util.List;
 
 /**
  * Detects the language of the content, by using the filename.
@@ -35,7 +34,7 @@ import java.util.Optional;
 public class FilenameLanguageDetectionStrategy extends FilenameBasedLanguageDetectionStrategy {
 
     @Override
-    protected Optional<Language> detectByFilename(String filename) {
+    protected List<Language> detectByFilename(String filename) {
         return Language.getByFilename(filename);
     }
 }

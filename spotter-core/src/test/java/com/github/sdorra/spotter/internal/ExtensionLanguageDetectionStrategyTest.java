@@ -27,11 +27,11 @@ package com.github.sdorra.spotter.internal;
 import com.github.sdorra.spotter.Language;
 import org.junit.Test;
 
-import java.util.Optional;
+import java.util.List;
 
 import static com.github.sdorra.spotter.internal.LanguageTests.assertLang;
 import static com.github.sdorra.spotter.internal.LanguageTests.assertNotFound;
-import static org.junit.Assert.assertFalse;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ExtensionLanguageDetectionStrategyTest {
 
@@ -46,8 +46,8 @@ public class ExtensionLanguageDetectionStrategyTest {
 
     @Test
     public void testDetectWithoutExtension() {
-        Optional<Language> optional = strategy.detectByFilename("Jenkinsfile");
-        assertFalse(optional.isPresent());
+        List<Language> languages = strategy.detectByFilename("Jenkinsfile");
+        assertThat(languages).isEmpty();
     }
 
 }

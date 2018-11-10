@@ -26,7 +26,8 @@ package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
 
-import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,7 +51,7 @@ public class RegexBasedLanguageDetectionStrategy extends StringContentBasedLangu
     }
 
     @Override
-    protected Optional<Language> detectByContent(String content) {
+    protected List<Language> detectByContent(String content) {
         String line = firstGroup(linePattern, content);
         if (line != null) {
             String alias = firstGroup(langPattern, line);
@@ -58,7 +59,7 @@ public class RegexBasedLanguageDetectionStrategy extends StringContentBasedLangu
                 return Language.getByAlias(alias);
             }
         }
-        return Optional.empty();
+        return Collections.emptyList();
     }
 
     private String firstGroup(Pattern pattern, String value) {

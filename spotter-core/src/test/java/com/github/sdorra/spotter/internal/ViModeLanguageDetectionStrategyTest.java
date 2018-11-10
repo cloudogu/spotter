@@ -28,9 +28,11 @@ import com.github.sdorra.spotter.Language;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import static com.github.sdorra.spotter.internal.LanguageTests.assertLangFromResource;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -59,14 +61,13 @@ public class ViModeLanguageDetectionStrategyTest {
 
     @Test
     public void testDetectWithoutModeline() {
-        Optional<Language> optional = strategy.detectByContent("");
-        assertFalse(optional.isPresent());
+        List<Language> languages = strategy.detectByContent("");
+        assertThat(languages).isEmpty();
     }
 
     private void assertLang(Language expected, String content) {
-        Optional<Language> optional = strategy.detectByContent(content);
-        assertTrue(optional.isPresent());
-        assertEquals(expected, optional.get());
+        List<Language> languages = strategy.detectByContent(content);
+        assertThat(languages).contains(expected);
     }
 
 }

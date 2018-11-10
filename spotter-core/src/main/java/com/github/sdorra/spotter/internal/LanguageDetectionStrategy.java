@@ -26,8 +26,7 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
-
-import java.util.Optional;
+import java.util.List;
 
 /**
  * Strategy for detecting the {@link Language} of content.
@@ -42,6 +41,5 @@ public interface LanguageDetectionStrategy {
      *
      * @return optional language of content
      */
-    Optional<Language> detect(String path, byte[] content);
-
+    List<Language> detect(String path, byte[] content);
 }

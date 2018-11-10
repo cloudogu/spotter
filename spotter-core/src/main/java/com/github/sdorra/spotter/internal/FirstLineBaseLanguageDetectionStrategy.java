@@ -27,14 +27,14 @@ package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
 
-import java.util.Optional;
+import java.util.List;
 
 /**
  * Base class for content detection strategies, which are using the first line of the file.
  */
 public abstract class FirstLineBaseLanguageDetectionStrategy extends StringContentBasedLanguageDetectionStrategy {
     @Override
-    protected Optional<Language> detectByContent(String content) {
+    protected List<Language> detectByContent(String content) {
         int lineSeparator = content.trim().indexOf('\n');
         if (lineSeparator > 0) {
             return detectByFirstLine(content.substring(0, lineSeparator).trim());
@@ -42,5 +42,5 @@ public abstract class FirstLineBaseLanguageDetectionStrategy extends StringConte
         return detectByFirstLine(content);
     }
 
-    protected abstract Optional<Language> detectByFirstLine(String firstLine);
+    protected abstract List<Language> detectByFirstLine(String firstLine);
 }
