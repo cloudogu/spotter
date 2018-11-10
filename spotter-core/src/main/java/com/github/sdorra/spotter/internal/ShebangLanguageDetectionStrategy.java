@@ -28,7 +28,6 @@ import com.github.sdorra.spotter.Language;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Detects the language of the content by using the unix shebang line.
