@@ -112,8 +112,8 @@ public final class ContentType {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContentType that = (ContentType) o;
-        return Objects.equals(raw, that.raw) &&
-                Objects.equals(language, that.language);
+        return Objects.equals(raw, that.raw)
+            && Objects.equals(language, that.language);
     }
 
     @Override

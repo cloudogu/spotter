@@ -26,10 +26,12 @@ package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
 import com.github.sdorra.spotter.internal.LanguageDetectionStrategy;
+import com.google.common.collect.Lists;
 import com.google.common.io.Resources;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,5 +65,10 @@ final class LanguageTests {
     static void assertNotFound(LanguageDetectionStrategy strategy, String path) {
         List<Language> languages = strategy.detect(path, new byte[]{});
         assertThat(languages).isEmpty();
+    }
+
+    static LanguageDetectionStrategy noopDetectionStrategy(Language... languages) {
+        List<Language> list = Lists.newArrayList(languages);
+        return (path, content) -> list;
     }
 }

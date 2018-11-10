@@ -27,6 +27,9 @@ package com.github.sdorra.spotter;
 
 import org.junit.Test;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 public class ContentTypeTest {
@@ -47,6 +50,58 @@ public class ContentTypeTest {
     public void testToString() {
         ContentType contentType = new ContentType("text/plain");
         assertEquals("text/plain", contentType.toString());
+    }
+
+    @Test
+    public void testGetRaw() {
+        ContentType contentType = new ContentType("text/plain");
+        assertEquals("text/plain", contentType.getRaw());
+    }
+
+    @Test
+    public void testEqualsAndHashCode() {
+        assertEqualInclusiveHashCode(new ContentType("text/plain"), new ContentType("text/plain"));
+        assertNotEqualInclusiveHashCode(new ContentType("text/plain"), new ContentType("image/png"));
+    }
+
+    private void assertEqualInclusiveHashCode(ContentType left, ContentType right) {
+        assertEquals(left, right);
+        assertEquals(left.hashCode(), right.hashCode());
+    }
+
+    private void assertNotEqualInclusiveHashCode(ContentType left, ContentType right) {
+        assertNotEquals(left, right);
+        assertNotEquals(left.hashCode(), right.hashCode());
+    }
+
+    @Test
+    public void testEqualsWithLanguage() {
+        assertEqualInclusiveHashCode(
+            new ContentType("text/plain", Optional.of(Language.JAVASCRIPT)),
+            new ContentType("text/plain", Optional.of(Language.JAVASCRIPT))
+        );
+        assertNotEqualInclusiveHashCode(
+            new ContentType("text/plain", Optional.of(Language.JAVASCRIPT)),
+            new ContentType("text/plain", Optional.of(Language.TYPESCRIPT))
+        );
+    }
+
+    @Test
+    public void testIsTextWithTextBasedContentType() {
+        ContentType contentType = new ContentType("text/plain");
+        assertTrue(contentType.isText());
+    }
+
+    @Test
+    public void testIsTextWithTextLanguage() {
+        ContentType contentType = new ContentType("application/javascript", Optional.of(Language.JAVASCRIPT));
+        assertTrue(contentType.isText());
+    }
+
+    @Test
+    public void testIsTextWithNonText() {
+        ContentType contentType = new ContentType("application/pdf");
+        assertFalse(contentType.isText());
     }
 
 }

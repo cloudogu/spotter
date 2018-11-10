@@ -29,7 +29,10 @@ import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ContentTypesTest {
 
@@ -78,5 +81,16 @@ public class ContentTypesTest {
         assertEquals("application/x-sh", type.getRaw());
         assertTrue(type.isText());
         assertEquals(Language.SHELL, type.getLanguage().get());
+    }
+
+    @Test
+    public void testDetectMultipleMatches() throws UnsupportedEncodingException {
+        // shebang matches javascript and typescript, but the js extension should match only javascript
+        ContentType type = ContentTypes.detect("/index.js", "#!/usr/bin/env node".getBytes("UTF-8"));
+        assertThat(type.getLanguage()).contains(Language.JAVASCRIPT);
+
+        // shebang matches javascript and typescript, but the ts extension should match only typescript only
+        type = ContentTypes.detect("/index.ts", "#!/usr/bin/env node".getBytes("UTF-8"));
+        assertThat(type.getLanguage()).contains(Language.TYPESCRIPT);
     }
 }

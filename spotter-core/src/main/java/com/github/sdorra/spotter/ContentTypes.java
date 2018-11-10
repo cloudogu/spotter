@@ -25,36 +25,20 @@
 
 package com.github.sdorra.spotter;
 
-import com.github.sdorra.spotter.internal.*;
-import org.apache.tika.Tika;
-
-import java.util.Optional;
-
 /**
  * ContentTypes is able to detect the {@link ContentType} of content. ContentTypes uses different strategies to detect
  * the type of a content.
  */
 public final class ContentTypes {
 
-    private static final byte[] EMPTY_CONTENT = new byte[]{};
+    private static final ContentTypeDetector PATH_BASED_DETECTOR = ContentTypeDetector.builder()
+        .detection(LanguageDetection.FILENAME, LanguageDetection.EXTENSION)
+        .firstMatch();
 
-    private static final String DEFAULT_CONTENT_TYPE = "application/octet-stream";
-    private static final String DEFAULT_CONTENT_TYPE_FOR_LANGUAGE = "text/plain";
-
-    private static final Tika tika = new Tika();
-
-    private static final MatchingStrategy PATH_BASED_STRATEGY = new FirstMatchMathingStrategy(
-        new FilenameLanguageDetectionStrategy(),
-        new ExtensionLanguageDetectionStrategy()
-    );
-
-    private static final MatchingStrategy PATH_AND_CONTENT_BASED_STRATEGY = new FirstMatchMathingStrategy(
-        new ViModeLanguageDetectionStrategy(),
-        new EmacsModeLanguageDetectionStrategy(),
-        new ShebangLanguageDetectionStrategy(),
-        new FilenameLanguageDetectionStrategy(),
-        new ExtensionLanguageDetectionStrategy()
-    );
+    private static final ContentTypeDetector PATH_AND_CONTENT_BASED_DETECTOR = ContentTypeDetector.builder()
+        .detection(LanguageDetection.VI_MODE, LanguageDetection.EMACS_MODE, LanguageDetection.SHEBANG)
+        .detection(LanguageDetection.FILENAME, LanguageDetection.EXTENSION)
+        .bestEffortMatch();
 
     private ContentTypes(){}
 
@@ -66,7 +50,7 @@ public final class ContentTypes {
      * @return {@link ContentType} of path
      */
     public static ContentType detect(String path) {
-        return of(tika.detect(path), PATH_BASED_STRATEGY.detect(path, EMPTY_CONTENT));
+        return PATH_BASED_DETECTOR.detect(path);
     }
 
     /**
@@ -78,15 +62,6 @@ public final class ContentTypes {
      * @return {@link ContentType} of path and content prefix
      */
     public static ContentType detect(String path, byte[] contentPrefix) {
-        return of(tika.detect(contentPrefix, path), PATH_AND_CONTENT_BASED_STRATEGY.detect(path, contentPrefix));
+        return PATH_AND_CONTENT_BASED_DETECTOR.detect(path, contentPrefix);
     }
-
-    private static ContentType of(String contentType, Optional<Language> language) {
-        if (contentType.equals(DEFAULT_CONTENT_TYPE) && language.isPresent()) {
-            contentType = DEFAULT_CONTENT_TYPE_FOR_LANGUAGE;
-        }
-        return new ContentType(contentType, language);
-    }
-
-
 }
