@@ -27,7 +27,6 @@ package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
