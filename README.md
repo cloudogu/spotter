@@ -19,7 +19,7 @@ E.g. for maven:
 <dependency>
     <groupId>com.github.sdorra</groupId>
     <artifactId>spotter-core</artifactId>
-    <version>1.0.0</version>
+    <version>x.y.z</version>
 </dependency>
 ```
 
