@@ -33,11 +33,13 @@ public final class ContentTypes {
 
     private static final ContentTypeDetector PATH_BASED_DETECTOR = ContentTypeDetector.builder()
         .detection(LanguageDetection.FILENAME, LanguageDetection.EXTENSION)
-        .firstMatch();
+        .detection(LanguageDetection.CONTENT_TYPE_BOOST)
+        .bestEffortMatch();
 
     private static final ContentTypeDetector PATH_AND_CONTENT_BASED_DETECTOR = ContentTypeDetector.builder()
         .detection(LanguageDetection.VI_MODE, LanguageDetection.EMACS_MODE, LanguageDetection.SHEBANG)
         .detection(LanguageDetection.FILENAME, LanguageDetection.EXTENSION)
+        .detection(LanguageDetection.CONTENT_TYPE_BOOST)
         .bestEffortMatch();
 
     private ContentTypes(){}

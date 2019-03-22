@@ -25,6 +25,7 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
+import com.github.sdorra.spotter.LanguageDetectionContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +45,14 @@ public class BestEffortMatchingStrategy implements MatchingStrategy {
     }
 
     @Override
-    public Optional<Language> detect(String path, byte[] content) {
+    public Optional<Language> detect(LanguageDetectionContext context) {
         List<Match> matches = new ArrayList<>();
 
         for (int i=0; i<strategies.length; i++) {
             LanguageDetectionStrategy strategy = strategies[i];
 
-            List<Language> languages = strategy.detect(path, content);
+            List<Language> languages = strategy.detect(context);
+            context = context.addLanguages(languages);
             for (Language language : languages) {
                 addMatch(matches, language, i);
             }

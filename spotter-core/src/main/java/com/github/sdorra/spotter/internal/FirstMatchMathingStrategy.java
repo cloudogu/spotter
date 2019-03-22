@@ -26,6 +26,7 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
+import com.github.sdorra.spotter.LanguageDetectionContext;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,9 +49,9 @@ public class FirstMatchMathingStrategy implements MatchingStrategy {
     }
 
     @Override
-    public Optional<Language> detect(String path, byte[] content) {
+    public Optional<Language> detect(LanguageDetectionContext context) {
         for (LanguageDetectionStrategy strategy : strategies) {
-            List<Language> lang = strategy.detect(path, content);
+            List<Language> lang = strategy.detect(context);
             if (!lang.isEmpty()) {
                 return Optional.of(lang.get(0));
             }
