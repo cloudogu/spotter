@@ -25,6 +25,7 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
+import com.github.sdorra.spotter.LanguageDetectionContext;
 import org.junit.Test;
 
 import java.util.Optional;
@@ -39,7 +40,7 @@ public class BestEffortMatchingStrategyTest {
         LanguageDetectionStrategy one = noopDetectionStrategy(Language.JAVASCRIPT);
         BestEffortMatchingStrategy strategy = new BestEffortMatchingStrategy(one);
 
-        Optional<Language> language = strategy.detect("/some/path", new byte[0]);
+        Optional<Language> language = strategy.detect(new LanguageDetectionContext("", "/some/path", new byte[0]));
         assertThat(language).contains(Language.JAVASCRIPT);
     }
 
@@ -49,7 +50,7 @@ public class BestEffortMatchingStrategyTest {
         LanguageDetectionStrategy two = noopDetectionStrategy(Language.JAVASCRIPT);
         BestEffortMatchingStrategy strategy = new BestEffortMatchingStrategy(one, two);
 
-        Optional<Language> language = strategy.detect("/some/path", new byte[0]);
+        Optional<Language> language = strategy.detect(new LanguageDetectionContext("", "/some/path", new byte[0]));
         assertThat(language).contains(Language.JAVASCRIPT);
     }
 
@@ -60,7 +61,7 @@ public class BestEffortMatchingStrategyTest {
         LanguageDetectionStrategy three = noopDetectionStrategy(Language.TYPESCRIPT);
         BestEffortMatchingStrategy strategy = new BestEffortMatchingStrategy(one, two, three);
 
-        Optional<Language> language = strategy.detect("/some/path", new byte[0]);
+        Optional<Language> language = strategy.detect(new LanguageDetectionContext("", "/some/path", new byte[0]));
         assertThat(language).contains(Language.JAVASCRIPT);
     }
 
@@ -70,7 +71,7 @@ public class BestEffortMatchingStrategyTest {
         LanguageDetectionStrategy two = noopDetectionStrategy();
         BestEffortMatchingStrategy strategy = new BestEffortMatchingStrategy(one, two);
 
-        Optional<Language> language = strategy.detect("/some/path", new byte[0]);
+        Optional<Language> language = strategy.detect(new LanguageDetectionContext("", "/some/path", new byte[0]));
         assertThat(language).isEmpty();
     }
 

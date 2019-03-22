@@ -25,6 +25,7 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
+import com.github.sdorra.spotter.LanguageDetectionContext;
 
 import java.util.List;
 
@@ -33,8 +34,8 @@ import java.util.List;
  */
 public abstract class StringContentBasedLanguageDetectionStrategy implements LanguageDetectionStrategy {
     @Override
-    public List<Language> detect(String path, byte[] content) {
-        return detectByContent(new String(content));
+    public List<Language> detect(LanguageDetectionContext context){
+        return detectByContent(new String(context.getContent()));
     }
 
     protected abstract List<Language> detectByContent(String content);

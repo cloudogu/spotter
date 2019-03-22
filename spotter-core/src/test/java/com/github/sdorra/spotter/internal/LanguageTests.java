@@ -25,20 +25,15 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
-import com.github.sdorra.spotter.internal.LanguageDetectionStrategy;
+import com.github.sdorra.spotter.LanguageDetectionContext;
 import com.google.common.collect.Lists;
 import com.google.common.io.Resources;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 final class LanguageTests {
 
@@ -49,7 +44,7 @@ final class LanguageTests {
         URL url = Resources.getResource(resource);
         byte[] content = Resources.toByteArray(url);
 
-        return strategy.detect(resource, content);
+        return strategy.detect(new LanguageDetectionContext("", resource, content));
     }
 
     static void assertLangFromResource(LanguageDetectionStrategy strategy, Language expected, String resource) throws IOException {
@@ -58,17 +53,17 @@ final class LanguageTests {
     }
 
     static void assertLang(LanguageDetectionStrategy strategy, Language expected, String path) {
-        List<Language> languages = strategy.detect(path, new byte[]{});
+        List<Language> languages = strategy.detect(new LanguageDetectionContext("", path, new byte[]{}));
         assertThat(languages).contains(expected);
     }
 
     static void assertNotFound(LanguageDetectionStrategy strategy, String path) {
-        List<Language> languages = strategy.detect(path, new byte[]{});
+        List<Language> languages = strategy.detect(new LanguageDetectionContext("", path, new byte[]{}));
         assertThat(languages).isEmpty();
     }
 
     static LanguageDetectionStrategy noopDetectionStrategy(Language... languages) {
         List<Language> list = Lists.newArrayList(languages);
-        return (path, content) -> list;
+        return context -> list;
     }
 }

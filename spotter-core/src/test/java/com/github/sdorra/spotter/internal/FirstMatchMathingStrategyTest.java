@@ -25,6 +25,7 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
+import com.github.sdorra.spotter.LanguageDetectionContext;
 import org.junit.Test;
 
 import java.util.Optional;
@@ -39,7 +40,7 @@ public class FirstMatchMathingStrategyTest {
         LanguageDetectionStrategy languageDetectionStrategy = noopDetectionStrategy(Language.JAVA);
         FirstMatchMathingStrategy mathingStrategy = new FirstMatchMathingStrategy(languageDetectionStrategy);
 
-        Optional<Language> language = mathingStrategy.detect("/some/file", new byte[0]);
+        Optional<Language> language = mathingStrategy.detect(new LanguageDetectionContext("", "/some/file", new byte[0]));
         assertThat(language).contains(Language.JAVA);
     }
 
@@ -49,7 +50,7 @@ public class FirstMatchMathingStrategyTest {
         LanguageDetectionStrategy two = noopDetectionStrategy(Language.JAVA);
         FirstMatchMathingStrategy mathingStrategy = new FirstMatchMathingStrategy(one, two);
 
-        Optional<Language> language = mathingStrategy.detect("/some/file", new byte[0]);
+        Optional<Language> language = mathingStrategy.detect(new LanguageDetectionContext("", "/some/file", new byte[0]));
         assertThat(language).contains(Language.JAVA);
     }
 
@@ -59,7 +60,7 @@ public class FirstMatchMathingStrategyTest {
         LanguageDetectionStrategy two = noopDetectionStrategy();
         FirstMatchMathingStrategy mathingStrategy = new FirstMatchMathingStrategy(one, two);
 
-        Optional<Language> language = mathingStrategy.detect("/some/file", new byte[0]);
+        Optional<Language> language = mathingStrategy.detect(new LanguageDetectionContext("", "/some/file", new byte[0]));
         assertThat(language).isEmpty();
     }
 
@@ -68,7 +69,7 @@ public class FirstMatchMathingStrategyTest {
         LanguageDetectionStrategy one = noopDetectionStrategy(Language.JAVASCRIPT, Language.TYPESCRIPT);
         FirstMatchMathingStrategy mathingStrategy = new FirstMatchMathingStrategy(one);
 
-        Optional<Language> language = mathingStrategy.detect("/some/file", new byte[0]);
+        Optional<Language> language = mathingStrategy.detect(new LanguageDetectionContext("", "/some/file", new byte[0]));
         assertThat(language).contains(Language.JAVASCRIPT);
     }
 

@@ -64,7 +64,8 @@ public class ContentTypeDetector {
      * @return {@link ContentType} of path
      */
     public ContentType detect(String path) {
-        return of(tika.detect(path), matchingStrategy.detect(path, EMPTY_CONTENT));
+        String contentType = tika.detect(path);
+        return of(contentType, matchingStrategy.detect(new LanguageDetectionContext(contentType, path, EMPTY_CONTENT)));
     }
 
     /**
@@ -76,7 +77,8 @@ public class ContentTypeDetector {
      * @return {@link ContentType} of path and content prefix
      */
     public ContentType detect(String path, byte[] contentPrefix) {
-        return of(tika.detect(contentPrefix, path), matchingStrategy.detect(path, contentPrefix));
+        String contentType = tika.detect(contentPrefix, path);
+        return of(contentType, matchingStrategy.detect(new LanguageDetectionContext(contentType, path, contentPrefix)));
     }
 
     private ContentType of(String contentType, Optional<Language> language) {

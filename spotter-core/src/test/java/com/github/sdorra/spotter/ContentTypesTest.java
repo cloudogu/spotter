@@ -29,10 +29,10 @@ import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ContentTypesTest {
 
@@ -49,6 +49,15 @@ public class ContentTypesTest {
         assertEquals("image/png", type.getRaw());
         assertFalse(type.isText());
         assertFalse(type.getLanguage().isPresent());
+    }
+
+    @Test
+    public void testDetectWithMarkdown() {
+        ContentType type = ContentTypes.detect("com/github/sdorra/scm-manager.md");
+        assertEquals("text/x-web-markdown", type.getRaw());
+        assertTrue(type.isText());
+        assertTrue(type.getLanguage().isPresent());
+        assertEquals(Language.MARKDOWN, type.getLanguage().get());
     }
 
     @Test

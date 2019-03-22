@@ -24,6 +24,7 @@
 
 package com.github.sdorra.spotter;
 
+import com.github.sdorra.spotter.internal.ContentTypeBoostLanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.EmacsModeLanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.ExtensionLanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.FilenameLanguageDetectionStrategy;
@@ -69,7 +70,9 @@ public enum LanguageDetection {
     /**
      * Uses the file extension to detect language of the content.
      */
-    EXTENSION(new ExtensionLanguageDetectionStrategy());
+    EXTENSION(new ExtensionLanguageDetectionStrategy()),
+
+    CONTENT_TYPE_BOOST(new ContentTypeBoostLanguageDetectionStrategy());
 
     private LanguageDetectionStrategy strategy;
 

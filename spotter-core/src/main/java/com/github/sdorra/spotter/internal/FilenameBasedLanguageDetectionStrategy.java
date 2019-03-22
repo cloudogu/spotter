@@ -26,6 +26,7 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
+import com.github.sdorra.spotter.LanguageDetectionContext;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -36,8 +37,8 @@ import java.util.List;
 public abstract class FilenameBasedLanguageDetectionStrategy implements LanguageDetectionStrategy {
 
     @Override
-    public List<Language> detect(String path, byte[] content) {
-        String filename = Paths.get(path).getFileName().toString();
+    public List<Language> detect(LanguageDetectionContext context) {
+        String filename = Paths.get(context.getPath()).getFileName().toString();
         return detectByFilename(filename);
     }
 
