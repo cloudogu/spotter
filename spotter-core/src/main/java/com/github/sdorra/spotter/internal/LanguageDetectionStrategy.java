@@ -26,6 +26,8 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
+import com.github.sdorra.spotter.LanguageDetectionContext;
+
 import java.util.List;
 
 /**
@@ -36,10 +38,9 @@ public interface LanguageDetectionStrategy {
     /**
      * Detects possible languages of a path and or the content.
      *
-     * @param path content path
-     * @param content first few bytes of content
+     * @param context Context for the detection
      *
      * @return list of matching languages
      */
-    List<Language> detect(String path, byte[] content);
+    List<Language> detect(LanguageDetectionContext context);
 }

@@ -25,11 +25,12 @@
 package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
+import com.github.sdorra.spotter.LanguageDetectionContext;
 
 import java.util.Optional;
 
 public interface MatchingStrategy {
 
-    Optional<Language> detect(String path, byte[] content);
+    Optional<Language> detect(LanguageDetectionContext context);
 
 }
