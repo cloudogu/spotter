@@ -25,6 +25,8 @@
 
 package com.github.sdorra.spotter;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class Language {
@@ -35,6 +37,10 @@ public class Language {
     private List<String> extensions;
     private List<String> filenames;
     private List<String> interpreters;
+    @JsonProperty("ace_mode")
+    private String aceMode;
+    @JsonProperty("codemirror_mode")
+    private String codemirrorMode;
 
     public String getType() {
         return type;
@@ -58,5 +64,13 @@ public class Language {
 
     public List<String> getInterpreters() {
         return interpreters;
+    }
+
+    public String getAceMode() {
+        return aceMode;
+    }
+
+    public String getCodemirrorMode() {
+        return codemirrorMode;
     }
 }

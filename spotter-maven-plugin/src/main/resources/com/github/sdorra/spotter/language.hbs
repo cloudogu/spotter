@@ -46,7 +46,9 @@ public enum Language {
         new String[]{ {{#each this.value.aliases}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
         new String[]{ {{#each this.value.extensions}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
         new String[]{ {{#each this.value.filenames}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
-        new String[]{ {{#each this.value.interpreters}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} }
+        new String[]{ {{#each this.value.interpreters}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
+        {{#nullableString this.value.aceMode}}{{/nullableString}},
+        {{#nullableString this.value.codemirrorMode}}{{/nullableString}}
     ){{^@last}}, {{/@last}}{{#@last}};{{/@last}}{{/each}}
 
     public static final String VERSION = "{{ version }}";
@@ -99,6 +101,8 @@ public enum Language {
     private String[] extensions;
     private String[] filenames;
     private String[] interpreters;
+    private String aceMode;
+    private String codemirrorMode;
 
     private Language(
         String name,
@@ -107,7 +111,9 @@ public enum Language {
         String[] aliases,
         String[] extensions,
         String[] filenames,
-        String[] interpreters
+        String[] interpreters,
+        String aceMode,
+        String codemirrorMode
     ){
         this.name = name;
         this.type = type;
@@ -116,6 +122,8 @@ public enum Language {
         this.extensions = extensions;
         this.filenames = filenames;
         this.interpreters = interpreters;
+        this.aceMode = aceMode;
+        this.codemirrorMode = codemirrorMode;
     }
 
     public String getName() {
@@ -144,6 +152,14 @@ public enum Language {
 
     public String[] getInterpreters() {
         return Arrays.copyOf(interpreters, interpreters.length);
+    }
+
+    public Optional<String> getAceMode() {
+        return Optional.ofNullable(aceMode);
+    }
+
+    public Optional<String> getCodemirrorMode() {
+        return Optional.ofNullable(codemirrorMode);
     }
 
     private static class LanguageMap {
