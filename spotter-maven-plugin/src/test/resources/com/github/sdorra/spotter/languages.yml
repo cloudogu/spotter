@@ -29,3 +29,26 @@ Dockerfile:
   codemirror_mode: dockerfile
   codemirror_mime_type: text/x-dockerfile
   language_id: 89
+Nginx:
+  type: data
+  extensions:
+  - ".nginxconf"
+  - ".vhost"
+  filenames:
+  - nginx.conf
+  tm_scope: source.nginx
+  aliases:
+  - nginx configuration file
+  ace_mode: text
+  codemirror_mode: nginx
+  codemirror_mime_type: text/x-nginx-conf
+  language_id: 248
+ObjectScript:
+  type: programming
+  extensions:
+  - ".cls"
+  language_id: 202735509
+  tm_scope: source.objectscript
+  color: "#424893"
+  ace_mode: text
+

@@ -83,7 +83,7 @@ public class GenerateSourcesMojoTest {
             Class<?> languageClass = classLoader.loadClass("demo.Language");
             assertTrue(languageClass.isEnum());
             assertEquals("v1.0.0", languageClass.getDeclaredField("VERSION").get(null));
-            assertEquals(3, languageClass.getEnumConstants().length);
+            assertEquals(5, languageClass.getEnumConstants().length);
         }
     }
 
