@@ -40,7 +40,7 @@ public class LanguageDetectionContext {
     }
 
     /**
-     * return first few bytes of content
+     * @return first few bytes of content
      */
     public byte[] getContent() {
         return content;
@@ -55,7 +55,9 @@ public class LanguageDetectionContext {
 
     /**
      * Creates a copy of this context with the given languages added to the languages of this context.
-     * @return New context with additional languages.
+     *
+     * @param additionalLanguages additional languages
+     * @return new context with additional languages.
      */
     public LanguageDetectionContext addLanguages(Collection<Language> additionalLanguages) {
         if (additionalLanguages.isEmpty()) {
