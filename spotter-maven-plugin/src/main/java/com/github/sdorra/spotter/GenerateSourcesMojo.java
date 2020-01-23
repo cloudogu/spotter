@@ -155,8 +155,9 @@ public class GenerateSourcesMojo extends AbstractMojo {
 
     private Template readTemplate(String template) throws IOException {
         Handlebars handlebars = new Handlebars();
-        handlebars.registerHelper("nullableString",(Helper<String>) (s, options) -> {
-            if (Strings.isNullOrEmpty(s)) {
+        handlebars.registerHelper("mode",(Helper<String>) (s, options) -> {
+            // treat text as null, because it is always the default for highlighting
+            if (Strings.isNullOrEmpty(s) || "text".equalsIgnoreCase(s)) {
                 return "null";
             }
             return "\"" + s + "\"";

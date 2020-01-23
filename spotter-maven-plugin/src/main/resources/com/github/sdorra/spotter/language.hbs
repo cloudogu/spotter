@@ -56,8 +56,8 @@ public enum Language {
         new String[]{ {{#each this.value.extensions}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
         new String[]{ {{#each this.value.filenames}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
         new String[]{ {{#each this.value.interpreters}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
-        {{#nullableString this.value.aceMode}}{{/nullableString}},
-        {{#nullableString this.value.codemirrorMode}}{{/nullableString}}
+        {{#mode this.value.aceMode}}{{/mode}},
+        {{#mode this.value.codemirrorMode}}{{/mode}}
     ){{^@last}}, {{/@last}}{{#@last}};{{/@last}}{{/each}}
 
     public static final String VERSION = "{{ version }}";
