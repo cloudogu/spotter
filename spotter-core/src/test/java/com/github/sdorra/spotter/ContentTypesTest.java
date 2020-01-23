@@ -97,9 +97,5 @@ public class ContentTypesTest {
         // shebang matches javascript and typescript, but the js extension should match only javascript
         ContentType type = ContentTypes.detect("/index.js", "#!/usr/bin/env node".getBytes("UTF-8"));
         assertThat(type.getLanguage()).contains(Language.JAVASCRIPT);
-
-        // shebang matches javascript and typescript, but the ts extension should match only typescript only
-        type = ContentTypes.detect("/index.ts", "#!/usr/bin/env node".getBytes("UTF-8"));
-        assertThat(type.getLanguage()).contains(Language.TYPESCRIPT);
     }
 }
