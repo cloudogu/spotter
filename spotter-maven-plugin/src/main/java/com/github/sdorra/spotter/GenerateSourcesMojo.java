@@ -48,7 +48,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * Mojo for generating language enum from githubs linguist languages.yml file.
@@ -162,7 +161,7 @@ public class GenerateSourcesMojo extends AbstractMojo {
         handlebars.registerHelper("ek",
             (Helper<String>) (s, options) ->
                     s.toUpperCase(Locale.ENGLISH)
-                            .replaceAll("#", "_SHARP")
+                            .replace("#", "_SHARP")
                             .replaceAll("\\+\\+", "_PLUS")
                             .replaceAll("\\*", "_STAR")
                             .replaceAll("^[0-9]", "")
