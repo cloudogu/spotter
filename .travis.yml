@@ -6,4 +6,4 @@ addons:
     organization: "sdorra-github"
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+  - mvn -Pcoverage clean install sonar:sonar
