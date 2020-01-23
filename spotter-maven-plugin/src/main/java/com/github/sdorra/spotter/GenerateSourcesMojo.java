@@ -44,6 +44,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -139,6 +141,7 @@ public class GenerateSourcesMojo extends AbstractMojo {
         model.put("package", packageName);
         model.put("url", url);
         model.put("version", languagesVersion);
+        model.put("date", ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         return model;
     }
 
