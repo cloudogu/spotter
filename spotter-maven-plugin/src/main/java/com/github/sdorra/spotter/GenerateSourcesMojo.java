@@ -108,7 +108,7 @@ public class GenerateSourcesMojo extends AbstractMojo {
             getLog().info("download languages file from " + url);
 
             Languages languages = loadLanguages(url);
-            Map<String, Object> model = createModel(languages);
+            Map<String, Object> model = createModel(languages, url);
 
             String packagePath = packageName.replaceAll("\\.", "/");
             File directory = new File(outputPath, packagePath);
@@ -133,11 +133,11 @@ public class GenerateSourcesMojo extends AbstractMojo {
         return languagesUrl;
     }
 
-    private Map<String,Object> createModel(Languages languages) {
+    private Map<String,Object> createModel(Languages languages, String url) {
         Map<String,Object> model = new LinkedHashMap<>();
         model.put("languages", new ArrayList<>(languages.entrySet()));
         model.put("package", packageName);
-        model.put("url", languagesUrl);
+        model.put("url", url);
         model.put("version", languagesVersion);
         return model;
     }
