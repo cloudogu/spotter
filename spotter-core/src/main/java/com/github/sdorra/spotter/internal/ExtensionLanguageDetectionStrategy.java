@@ -37,7 +37,7 @@ public class ExtensionLanguageDetectionStrategy extends FilenameBasedLanguageDet
 
     @Override
     protected List<Language> detectByFilename(String filename) {
-        int index = filename.indexOf('.');
+        int index = filename.lastIndexOf('.');
         if (index > 0) {
             String extension = filename.substring(index);
             return Language.getByExtension(extension);

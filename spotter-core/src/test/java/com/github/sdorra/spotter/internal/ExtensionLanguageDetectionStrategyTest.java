@@ -41,6 +41,9 @@ public class ExtensionLanguageDetectionStrategyTest {
     public void testDetect() {
         assertLang(strategy, Language.PYTHON,"app.py");
         assertLang(strategy, Language.JAVA,"src/main/com/github/sdorra/App.java");
+        assertLang(strategy, Language.JSON, "dogu/blueprint.json");
+        assertLang(strategy, Language.JSON, "dogu/blueprint-3.1.0-dev.json");
+        assertLang(strategy, Language.JAVASCRIPT, "myData/version.test.js");
         assertNotFound(strategy, "scm-manager.png");
     }
 
