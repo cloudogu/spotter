@@ -135,7 +135,7 @@ public class ContentTypeDetector {
          * Adds a strategy which uses the shebang to detect language of the content.
          * This detection strategy requires content.
          *
-         * @see <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">emacs modeline magic</a>
+         * @see <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a>
          * @return {@code this}
          * @since 3.0.0
          */
