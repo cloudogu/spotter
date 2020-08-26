@@ -28,7 +28,7 @@
 
     <groupId>com.github.sdorra</groupId>
     <artifactId>spotter</artifactId>
-    <version>2.1.3-SNAPSHOT</version>
+    <version>3.0.0</version>
     <packaging>pom</packaging>
     <name>Spotter</name>
     <description>Content-Type and language recognition library</description>
@@ -55,7 +55,7 @@
         <connection>scm:git:git@github.com:sdorra/spotter.git</connection>
         <developerConnection>scm:git:git@github.com:sdorra/spotter.git</developerConnection>
         <url>git@github.com:sdorra/spotter.git</url>
-        <tag>HEAD</tag>
+        <tag>3.0.0</tag>
     </scm>
 
     <issueManagement>
