@@ -28,7 +28,6 @@ import com.github.sdorra.spotter.internal.ContentTypeBoostLanguageDetectionStrat
 import com.github.sdorra.spotter.internal.EmacsModeLanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.ExtensionLanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.FilenameLanguageDetectionStrategy;
-import com.github.sdorra.spotter.internal.LanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.ShebangLanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.ViModeLanguageDetectionStrategy;
 

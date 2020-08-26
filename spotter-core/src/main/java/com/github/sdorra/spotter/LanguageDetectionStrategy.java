@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Sebastian Sdorra
+ * Copyright 2020 Sebastian Sdorra
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,7 @@
  */
 
 
-package com.github.sdorra.spotter.internal;
-
-import com.github.sdorra.spotter.Language;
-import com.github.sdorra.spotter.LanguageDetectionContext;
+package com.github.sdorra.spotter;
 
 import java.util.List;
 

@@ -26,7 +26,6 @@ package com.github.sdorra.spotter;
 
 import com.github.sdorra.spotter.internal.BestEffortMatchingStrategy;
 import com.github.sdorra.spotter.internal.FirstMatchMathingStrategy;
-import com.github.sdorra.spotter.internal.LanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.MatchingStrategy;
 import org.apache.tika.Tika;
 

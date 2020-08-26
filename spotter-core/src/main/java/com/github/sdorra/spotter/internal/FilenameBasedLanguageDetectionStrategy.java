@@ -27,6 +27,7 @@ package com.github.sdorra.spotter.internal;
 
 import com.github.sdorra.spotter.Language;
 import com.github.sdorra.spotter.LanguageDetectionContext;
+import com.github.sdorra.spotter.LanguageDetectionStrategy;
 
 import java.nio.file.Paths;
 import java.util.List;
