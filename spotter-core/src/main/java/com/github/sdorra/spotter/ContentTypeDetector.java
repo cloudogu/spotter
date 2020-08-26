@@ -241,7 +241,7 @@ public class ContentTypeDetector {
 
         /**
          * Returns {@link ContentTypeDetector} which uses a best effort strategy for matching.
-         * Note the order in which the strategies was added matters.
+         * Note that the order in which the strategies are added matters.
          *
          * @return best effort content type detector
          */
@@ -251,7 +251,7 @@ public class ContentTypeDetector {
 
         /**
          * Return {@link ContentTypeDetector} which uses first match strategy for matching.
-         * Note the order in which the strategies was added matters.
+         * Note that the order in which the strategies are added matters.
          *
          * @return first match content type detector.
          */
