@@ -32,12 +32,10 @@ package com.github.sdorra.spotter;
 public final class ContentTypes {
 
     private static final ContentTypeDetector PATH_BASED_DETECTOR = ContentTypeDetector.builder()
-        .filename().extension().contentTypeBoost()
-        .bestEffortMatch();
+        .defaultPathBased().bestEffortMatch();
 
     private static final ContentTypeDetector PATH_AND_CONTENT_BASED_DETECTOR = ContentTypeDetector.builder()
-        .viMode().emacsMode().shebang().filename().extension().contentTypeBoost()
-        .bestEffortMatch();
+        .defaultPathAndContentBased().bestEffortMatch();
 
     private ContentTypes(){}
 

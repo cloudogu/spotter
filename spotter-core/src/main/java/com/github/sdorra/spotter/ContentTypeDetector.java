@@ -194,6 +194,40 @@ public class ContentTypeDetector {
         }
 
         /**
+         * Adds the following path based strategies.
+         * - {@link #filename()}
+         * - {@link #extension()}
+         * - {@link #contentTypeBoost()}
+         *
+         * @return {@code this}
+         * @since 3.0.0
+         */
+        public Builder defaultPathBased() {
+            filename();
+            extension();
+            contentTypeBoost();
+            return this;
+        }
+
+        /**
+         * Adds the following strategies.
+         * - {@link #viMode()}
+         * - {@link #emacsMode()}
+         * - {@link #shebang()}
+         * - {@link #defaultPathBased()}
+         *
+         * @return {@code this}
+         * @since 3.0.0
+         */
+        public Builder defaultPathAndContentBased() {
+            viMode();
+            emacsMode();
+            shebang();
+            defaultPathBased();
+            return this;
+        }
+
+        /**
          * Returns {@link ContentTypeDetector} which uses a best effort strategy for matching.
          * Note the order in which the strategies was added matters.
          *
