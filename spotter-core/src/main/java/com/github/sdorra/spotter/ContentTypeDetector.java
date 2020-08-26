@@ -25,6 +25,7 @@
 package com.github.sdorra.spotter;
 
 import com.github.sdorra.spotter.internal.BestEffortMatchingStrategy;
+import com.github.sdorra.spotter.internal.BoostLanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.ContentTypeBoostLanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.EmacsModeLanguageDetectionStrategy;
 import com.github.sdorra.spotter.internal.ExtensionLanguageDetectionStrategy;
@@ -224,6 +225,17 @@ public class ContentTypeDetector {
             emacsMode();
             shebang();
             defaultPathBased();
+            return this;
+        }
+
+        /**
+         * Adds a strategy which boost the given languages.
+         *
+         * @return {@code this}
+         * @since 3.0.0
+         */
+        public Builder boost(Language... languages) {
+            this.detectionStrategies.add(new BoostLanguageDetectionStrategy(languages));
             return this;
         }
 
