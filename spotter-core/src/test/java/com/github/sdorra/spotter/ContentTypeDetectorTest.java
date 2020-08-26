@@ -27,6 +27,7 @@ package com.github.sdorra.spotter;
 import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,6 +49,16 @@ public class ContentTypeDetectorTest {
 
         ContentType contentType = detector.detect("some.md", content.getBytes(StandardCharsets.UTF_8));
         assertThat(contentType.getLanguage()).contains(Language.MARKDOWN);
+    }
+
+    @Test
+    public void shouldUseCustom() {
+        ContentTypeDetector detector = ContentTypeDetector.builder()
+            .custom(ctx -> Collections.singletonList(Language.MAKEFILE))
+            .firstMatch();
+
+        ContentType contentType = detector.detect("???");
+        assertThat(contentType.getLanguage()).contains(Language.MAKEFILE);
     }
 
 }
