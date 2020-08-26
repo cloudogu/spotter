@@ -168,7 +168,7 @@ public class GenerateSourcesMojo extends AbstractMojo {
                             .replace("#", "_SHARP")
                             .replaceAll("\\+\\+", "_PLUS")
                             .replaceAll("\\*", "_STAR")
-                            .replaceAll("^[0-9]", "")
+                            .replaceAll("^([0-9])", "_$1")
                             .replaceAll("[\\s-#'.+()]", "_")
 
         );
