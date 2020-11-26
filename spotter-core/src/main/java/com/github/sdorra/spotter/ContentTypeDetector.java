@@ -231,6 +231,7 @@ public class ContentTypeDetector {
         /**
          * Adds a strategy which boost the given languages.
          *
+         * @param languages languages to boost
          * @return {@code this}
          * @since 3.0.0
          */
