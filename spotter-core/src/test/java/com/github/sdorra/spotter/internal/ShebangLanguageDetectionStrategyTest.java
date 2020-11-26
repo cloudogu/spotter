@@ -28,7 +28,6 @@ import com.github.sdorra.spotter.Language;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -53,6 +52,12 @@ public class ShebangLanguageDetectionStrategyTest {
     public void testDetecWithEnv() {
         List<Language> languages = strategy.detectByFirstLine("#!/usr/bin/env node");
         assertThat(languages).contains(Language.JAVASCRIPT);
+    }
+
+    @Test
+    public void testDetectWithParameter() {
+        List<Language> languages = strategy.detectByFirstLine("#!/usr/bin/make -f");
+        assertThat(languages).contains(Language.MAKEFILE);
     }
 
 }

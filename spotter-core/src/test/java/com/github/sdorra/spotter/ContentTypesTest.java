@@ -93,6 +93,14 @@ public class ContentTypesTest {
     }
 
     @Test
+    public void testDetectWithSheBangAndParameters() throws UnsupportedEncodingException {
+        ContentType type = ContentTypes.detect("rules", "#!/usr/bin/make -f".getBytes("UTF-8"));
+        assertEquals("application/x-sh", type.getRaw());
+        assertTrue(type.isText());
+        assertEquals(Language.MAKEFILE, type.getLanguage().get());
+    }
+
+    @Test
     public void testDetectMultipleMatches() throws UnsupportedEncodingException {
         // shebang matches javascript and typescript, but the js extension should match only javascript
         ContentType type = ContentTypes.detect("/index.js", "#!/usr/bin/env node".getBytes("UTF-8"));

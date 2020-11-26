@@ -48,12 +48,12 @@ public class ShebangLanguageDetectionStrategy extends FirstLineBaseLanguageDetec
     private String getInterpreterFromShebangLine(String line) {
         String lineWithoutShebang = removeShebang(line);
 
-        String executable = getExecutableFromPath(lineWithoutShebang);
+        String executable = getExecutableFromLine(lineWithoutShebang);
         if (isEnvExecutable(executable)) {
-            return getInterpreterFromEnv(executable);
+            executable = getInterpreterFromEnv(executable);
         }
 
-        return executable;
+        return splitAndReturnFirstPart(executable, "\\s+");
     }
 
     private String getInterpreterFromEnv(String executable) {
@@ -64,7 +64,7 @@ public class ShebangLanguageDetectionStrategy extends FirstLineBaseLanguageDetec
         return executable.startsWith("env");
     }
 
-    private String getExecutableFromPath(String lineWithoutShebang) {
+    private String getExecutableFromLine(String lineWithoutShebang) {
         return splitAndReturnLastPart(lineWithoutShebang, "/");
     }
 
@@ -79,5 +79,10 @@ public class ShebangLanguageDetectionStrategy extends FirstLineBaseLanguageDetec
     private String splitAndReturnLastPart(String value, String regex) {
         String[] parts = value.split(regex);
         return parts[ parts.length - 1 ];
+    }
+
+    private String splitAndReturnFirstPart(String value, String regex) {
+        String[] parts = value.split(regex);
+        return parts[0];
     }
 }
