@@ -71,7 +71,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh './mvnw package'
+        sh './mvnw install'
         archiveArtifacts artifacts: 'spotter-core/target/*.jar'
       }
     }
