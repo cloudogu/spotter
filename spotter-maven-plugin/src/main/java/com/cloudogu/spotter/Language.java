@@ -39,6 +39,8 @@ public class Language {
   private String aceMode;
   @JsonProperty("codemirror_mode")
   private String codemirrorMode;
+  @JsonProperty("prism_mode")
+  private String prismMode;
 
   public String getType() {
     return type;
@@ -70,5 +72,9 @@ public class Language {
 
   public String getCodemirrorMode() {
     return codemirrorMode;
+  }
+
+  public String getPrismMode() {
+    return prismMode;
   }
 }

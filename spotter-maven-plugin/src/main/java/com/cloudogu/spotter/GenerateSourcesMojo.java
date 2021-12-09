@@ -46,6 +46,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -73,6 +74,9 @@ public class GenerateSourcesMojo extends AbstractMojo {
   @Parameter(defaultValue = "master")
   private String languagesVersion;
 
+  @Parameter
+  private List<File> languagePatchFiles;
+
   @Parameter(readonly = true, required = true, defaultValue = "${project}")
   private MavenProject project;
 
@@ -94,6 +98,11 @@ public class GenerateSourcesMojo extends AbstractMojo {
   @VisibleForTesting
   void setLanguagesVersion(String languagesVersion) {
     this.languagesVersion = languagesVersion;
+  }
+
+  @VisibleForTesting
+  void setLanguagePatchFiles(List<File> languagePatchFiles) {
+    this.languagePatchFiles = languagePatchFiles;
   }
 
   @Override
@@ -147,6 +156,15 @@ public class GenerateSourcesMojo extends AbstractMojo {
     URL url = new URL(languagesUrl);
     ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+    if (languagePatchFiles != null && !languagePatchFiles.isEmpty()) {
+      JsonMerger merger = new JsonMerger(mapper);
+      JsonMerger.MergeStage mergeStage = merger.fromJson(mapper.readTree(url));
+      for (File f : languagePatchFiles) {
+        mergeStage.mergeWithJson(mapper.readTree(f));
+      }
+      return mergeStage.toObject(Languages.class);
+    }
 
     return mapper.readValue(url, Languages.class);
   }

@@ -25,6 +25,7 @@ package com.cloudogu.spotter;
 
 import com.google.common.io.Resources;
 import org.apache.maven.project.MavenProject;
+import org.junit.AssumptionViolatedException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,9 +39,15 @@ import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -60,29 +67,78 @@ public class GenerateSourcesMojoTest {
   private File directory;
 
   @Before
+  @SuppressWarnings("UnstableApiUsage")
   public void setUpMojo() throws IOException {
     directory = temporaryFolder.newFolder();
     mojo.setOutputPath(directory.getAbsolutePath());
-  }
 
-  @Test
-  public void testExecute() throws Exception {
     URL url = Resources.getResource("com/cloudogu/spotter/languages.yml");
     mojo.setLanguagesUrl(url.toExternalForm());
     mojo.setPackageName("demo");
     mojo.setLanguagesVersion("v1.0.0");
+  }
+
+  @Test
+  public void testExecute() throws Exception {
+    mojo.execute();
+
+    withGeneratedClass(languageClass -> {
+      assertTrue(languageClass.isEnum());
+      assertEquals("v1.0.0", languageClass.getDeclaredField("VERSION").get(null));
+      assertEquals(5, languageClass.getEnumConstants().length);
+    });
+  }
+
+  @Test
+  public void testExecuteWithPatchFile() throws Exception {
+    File patchFile = readPatchFile("com/cloudogu/spotter/prismPatch.yml");
+    mojo.setLanguagePatchFiles(Collections.singletonList(patchFile));
 
     mojo.execute();
 
+    withGeneratedClass(languageClass -> {
+      Object java = languageClass.getEnumConstants()[0];
+      assertEquals("java", getMode(languageClass, java, "Prism"));
+    });
+  }
+
+  @SuppressWarnings("unchecked")
+  private String getMode(Class<?> languageClass, Object object, String modeName) throws Exception {
+    Method getMode = languageClass.getMethod("get" + modeName + "Mode");
+    Optional<String> mode = (Optional<String>) getMode.invoke(object);
+    return mode.orElseThrow(() -> new AssumptionViolatedException("Mode " + modeName + " not available"));
+  }
+
+  @Test
+  public void testExecuteWithMultiplePatchFiles() throws Exception {
+    File prismPatchFile = readPatchFile("com/cloudogu/spotter/prismPatch.yml");
+    File acePatchFile = readPatchFile("com/cloudogu/spotter/acePatch.yml");
+
+    mojo.setLanguagePatchFiles(Arrays.asList(prismPatchFile, acePatchFile));
+
+    mojo.execute();
+
+    withGeneratedClass(languageClass -> {
+      Object java = languageClass.getEnumConstants()[0];
+      assertEquals("java", getMode(languageClass, java, "Prism"));
+      assertEquals("basic", getMode(languageClass, java, "Ace"));
+    });
+  }
+
+  @SuppressWarnings("UnstableApiUsage")
+  private File readPatchFile(String resourceName) throws URISyntaxException {
+    URL acePatchUrl = Resources.getResource(resourceName);
+    return Paths.get(acePatchUrl.toURI()).toFile();
+  }
+
+  private void withGeneratedClass(ThrowingConsumer<Class<?>> consumer) throws Exception {
     File packageFile = new File(directory, "demo");
     File sourceFile = new File(packageFile, "Language.java");
     compile(sourceFile);
 
     try (URLClassLoader classLoader = createClassLoader(directory)) {
       Class<?> languageClass = classLoader.loadClass("demo.Language");
-      assertTrue(languageClass.isEnum());
-      assertEquals("v1.0.0", languageClass.getDeclaredField("VERSION").get(null));
-      assertEquals(5, languageClass.getEnumConstants().length);
+      consumer.accept(languageClass);
     }
   }
 
@@ -96,4 +152,8 @@ public class GenerateSourcesMojoTest {
     return new URLClassLoader(new URL[]{directory.toURI().toURL()}, parent);
   }
 
+  @FunctionalInterface
+  private interface ThrowingConsumer<T> {
+    void accept(T value) throws Exception;
+  }
 }

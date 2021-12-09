@@ -57,7 +57,8 @@ public enum Language {
         new String[]{ {{#each this.value.filenames}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
         new String[]{ {{#each this.value.interpreters}}"{{this}}"{{^@last}}, {{/@last}}{{/each}} },
         {{#mode this.value.aceMode}}{{/mode}},
-        {{#mode this.value.codemirrorMode}}{{/mode}}
+        {{#mode this.value.codemirrorMode}}{{/mode}},
+        {{#mode this.value.prismMode}}{{/mode}}
     ){{^@last}}, {{/@last}}{{#@last}};{{/@last}}{{/each}}
 
     public static final String VERSION = "{{ version }}";
@@ -112,6 +113,7 @@ public enum Language {
     private String[] interpreters;
     private String aceMode;
     private String codemirrorMode;
+    private String prismMode;
 
     private Language(
         String name,
@@ -122,7 +124,8 @@ public enum Language {
         String[] filenames,
         String[] interpreters,
         String aceMode,
-        String codemirrorMode
+        String codemirrorMode,
+        String prismMode
     ){
         this.name = name;
         this.type = type;
@@ -133,6 +136,7 @@ public enum Language {
         this.interpreters = interpreters;
         this.aceMode = aceMode;
         this.codemirrorMode = codemirrorMode;
+        this.prismMode = prismMode;
     }
 
     public String getName() {
@@ -169,6 +173,10 @@ public enum Language {
 
     public Optional<String> getCodemirrorMode() {
         return Optional.ofNullable(codemirrorMode);
+    }
+
+    public Optional<String> getPrismMode() {
+        return Optional.ofNullable(prismMode);
     }
 
     private static class LanguageMap {
