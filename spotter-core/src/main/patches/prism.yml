@@ -1,0 +1,1372 @@
+#
+# MIT License
+#
+# Copyright (c) 2021, Cloudogu GmbH
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+
+# matching based on
+# linguist: https://github.com/github/linguist/blob/v7.17.0/lib/linguist/languages.yml
+# refractor: https://github.com/wooorm/refractor/tree/4.3.0/lang
+
+# no match found for language prism in linguist:
+# - antlr4
+# - aql
+# - arduino
+# - arff
+# - asm6502
+# - aspnet
+# - avisynth
+# - avro-idl
+# - bash
+# - batch
+# - bbcode
+# - birb
+# - bnf
+# - bro
+# - bsl
+# - cfscript
+# - chaiscript
+# - clike
+# - concurnas
+# - cpp
+# - csharp
+# - cshtml
+# - csp
+# - css-extras
+# - cypher
+# - dax
+# - django
+# - dns-zone-file
+# - docker
+# - dot
+# - erb
+# - etlua
+# - excel-formula
+# - false
+# - firestore-security-rules
+# - flow
+# - fsharp
+# - ftl
+# - gcode
+# - git
+# - gml
+# - hoon
+# - hpkp
+# - hsts
+# - ichigojam
+# - icon
+# - icu-message-format
+# - iecst
+# - ignore
+# - inform7
+# - javadoc
+# - javadoclike
+# - javastacktrace
+# - jexl
+# - js-extras
+# - js-templates
+# - jsdoc
+# - jsonp
+# - jsstacktrace
+# - jsx
+# - keyman
+# - kumir
+# - latex
+# - lisp
+# - log
+# - magma
+# - markup-templating
+# - markup
+# - mel
+# - mermaid
+# - mizar
+# - mongodb
+# - n1ql
+# - n4js
+# - nand2tetris-hdl
+# - naniscript
+# - nasm
+# - nevod
+# - objectivec
+# - parigp
+# - parser
+# - pascaligo
+# - pcaxis
+# - peoplecode
+# - php-extras
+# - phpdoc
+# - powerquery
+# - promql
+# - properties
+# - protobuf
+# - psl
+# - pure
+# - qore
+# - qsharp
+# - regex
+# - rego
+# - renpy
+# - rest
+# - rip
+# - roboconf
+# - shell-session
+# - sml
+# - solution-file
+# - soy
+# - splunk-spl
+# - systemd
+# - t4-cs
+# - t4-templating
+# - t4-vb
+# - tap
+# - tt2
+# - typoscript
+# - uri
+# - vbnet
+# - velocity
+# - vim
+# - visual-basic
+# - warpscript
+# - wasm
+# - wiki
+# - wolfram
+# - wren
+# - xeora
+# - xml-doc
+
+# no match found for linguist in prism:
+# 1C Enterprise:
+#  prism_mode:
+# 4D:
+#  prism_mode:
+# ABAP CDS:
+#  prism_mode:
+# AGS Script:
+#  prism_mode:
+# AIDL:
+#  prism_mode:
+# AMPL:
+#  prism_mode:
+# ANTLR:
+#  prism_mode:
+# API Blueprint:
+#  prism_mode:
+# ASL:
+#  prism_mode:
+# ASN.1:
+#  prism_mode:
+ASP.NET:
+  prism_mode: aspnet
+# ATS:
+#  prism_mode:
+# Adobe Font Metrics:
+#  prism_mode:
+# Alloy:
+#  prism_mode:
+# Alpine Abuild:
+#  prism_mode:
+# Altium Designer:
+#  prism_mode:
+# AngelScript:
+#  prism_mode:
+# Ant Build System:
+#  prism_mode:
+# Apollo Guidance Computer:
+#  prism_mode:
+# Arc:
+#  prism_mode:
+# AspectJ:
+#  prism_mode:
+# Assembly:
+#  prism_mode:
+# Astro:
+#  prism_mode:
+# Asymptote:
+#  prism_mode:
+# Augeas:
+#  prism_mode:
+# Avro IDL:
+#  prism_mode:
+# Awk:
+#  prism_mode:
+# Ballerina:
+#  prism_mode:
+Batchfile:
+  prism_mode: batch
+# Beef:
+#  prism_mode:
+# Befunge:
+#  prism_mode:
+# BibTeX:
+#  prism_mode:
+# BitBake:
+#  prism_mode:
+# Blade:
+#  prism_mode:
+# BlitzBasic:
+#  prism_mode:
+# BlitzMax:
+#  prism_mode:
+# Bluespec:
+#  prism_mode:
+# Boo:
+#  prism_mode:
+# Boogie:
+#  prism_mode:
+# Browserslist:
+#  prism_mode:
+C#:
+  prism_mode: csharp
+C++:
+  prism_mode: cpp
+# C-ObjDump:
+#  prism_mode:
+# C2hs Haskell:
+#  prism_mode:
+# CLIPS:
+#  prism_mode:
+# CODEOWNERS:
+#  prism_mode:
+# COLLADA:
+#  prism_mode:
+# CSON:
+#  prism_mode:
+# CUE:
+#  prism_mode:
+# CWeb:
+#  prism_mode:
+# Cabal Config:
+#  prism_mode:
+# Cap'n Proto:
+#  prism_mode:
+# CartoCSS:
+#  prism_mode:
+# Ceylon:
+#  prism_mode:
+# Chapel:
+#  prism_mode:
+# Charity:
+#  prism_mode:
+# ChucK:
+#  prism_mode:
+# Cirru:
+#  prism_mode:
+# Clarion:
+#  prism_mode:
+# Classic ASP:
+#  prism_mode:
+# Clean:
+#  prism_mode:
+# Click:
+#  prism_mode:
+# Closure Templates:
+#  prism_mode:
+# Cloud Firestore Security Rules:
+#  prism_mode:
+# CoNLL-U:
+#  prism_mode:
+# CodeQL:
+#  prism_mode:
+# ColdFusion:
+#  prism_mode:
+# ColdFusion CFC:
+#  prism_mode:
+# Common Lisp:
+#  prism_mode:
+# Common Workflow Language:
+#  prism_mode:
+# Component Pascal:
+#  prism_mode:
+# Cool:
+#  prism_mode:
+# Cpp-ObjDump:
+#  prism_mode:
+# Creole:
+#  prism_mode:
+# Csound:
+#  prism_mode:
+# Csound Document:
+#  prism_mode:
+# Csound Score:
+#  prism_mode:
+# Cuda:
+#  prism_mode:
+# Cue Sheet:
+#  prism_mode:
+# Cycript:
+#  prism_mode:
+# Cython:
+#  prism_mode:
+# D-ObjDump:
+#  prism_mode:
+# DIGITAL Command Language:
+#  prism_mode:
+# DM:
+#  prism_mode:
+# DNS Zone:
+#  prism_mode:
+# DTrace:
+#  prism_mode:
+# Dafny:
+#  prism_mode:
+# Darcs Patch:
+#  prism_mode:
+# DirectX 3D File:
+#  prism_mode:
+# Dockerfile:
+#  prism_mode:
+# Dogescript:
+#  prism_mode:
+# Dylan:
+#  prism_mode:
+# E:
+#  prism_mode:
+# E-mail:
+#  prism_mode:
+# ECL:
+#  prism_mode:
+# ECLiPSe:
+#  prism_mode:
+# EQ:
+#  prism_mode:
+# Eagle:
+#  prism_mode:
+# Easybuild:
+#  prism_mode:
+# Ecere Projects:
+#  prism_mode:
+# Edje Data Collection:
+#  prism_mode:
+# Emacs Lisp:
+#  prism_mode:
+# EmberScript:
+#  prism_mode:
+F#:
+  prism_mode: fsharp
+# F*:
+#  prism_mode:
+# FIGlet Font:
+#  prism_mode:
+# FLUX:
+#  prism_mode:
+# Fancy:
+#  prism_mode:
+# Fantom:
+#  prism_mode:
+# Faust:
+#  prism_mode:
+# Fennel:
+#  prism_mode:
+# Filebench WML:
+#  prism_mode:
+# Filterscript:
+#  prism_mode:
+# Fluent:
+#  prism_mode:
+# Formatted:
+#  prism_mode:
+# Forth:
+#  prism_mode:
+# Fortran Free Form:
+#  prism_mode:
+# FreeBasic:
+#  prism_mode:
+# FreeMarker:
+#  prism_mode:
+# Frege:
+#  prism_mode:
+# Futhark:
+#  prism_mode:
+# G-code:
+#  prism_mode:
+# GAML:
+#  prism_mode:
+# GAMS:
+#  prism_mode:
+# GCC Machine Description:
+#  prism_mode:
+# GDB:
+#  prism_mode:
+# Game Maker Language:
+#  prism_mode:
+# Gemfile.lock:
+#  prism_mode:
+# Genie:
+#  prism_mode:
+# Genshi:
+#  prism_mode:
+# Gentoo Ebuild:
+#  prism_mode:
+# Gentoo Eclass:
+#  prism_mode:
+# Gerber Image:
+#  prism_mode:
+# Gettext Catalog:
+#  prism_mode:
+# Git Attributes:
+#  prism_mode:
+# Git Config:
+#  prism_mode:
+# Glyph:
+#  prism_mode:
+# Glyph Bitmap Distribution Format:
+#  prism_mode:
+# Gnuplot:
+#  prism_mode:
+# Go Checksums:
+#  prism_mode:
+# Go Module:
+#  prism_mode:
+# Golo:
+#  prism_mode:
+# Gosu:
+#  prism_mode:
+# Grace:
+#  prism_mode:
+Gradle:
+  prism_mode: groovy
+# Grammatical Framework:
+#  prism_mode:
+# Graph Modeling Language:
+#  prism_mode:
+# Graphviz (DOT):
+#  prism_mode:
+# Groovy Server Pages:
+#  prism_mode:
+# HAProxy:
+#  prism_mode:
+# HTML:
+#  prism_mode:
+# HTML+ECR:
+#  prism_mode:
+# HTML+EEX:
+#  prism_mode:
+# HTML+ERB:
+#  prism_mode:
+# HTML+PHP:
+#  prism_mode:
+# HTML+Razor:
+#  prism_mode:
+# HXML:
+#  prism_mode:
+# Hack:
+#  prism_mode:
+# Harbour:
+#  prism_mode:
+# HiveQL:
+#  prism_mode:
+# HolyC:
+#  prism_mode:
+# Hy:
+#  prism_mode:
+# HyPhy:
+#  prism_mode:
+# IDL:
+#  prism_mode:
+# IGOR Pro:
+#  prism_mode:
+# IRC log:
+#  prism_mode:
+# Ignore List:
+#  prism_mode:
+# ImageJ Macro:
+#  prism_mode:
+# Inform 7:
+#  prism_mode:
+# Inno Setup:
+#  prism_mode:
+# Ioke:
+#  prism_mode:
+# Isabelle:
+#  prism_mode:
+# Isabelle ROOT:
+#  prism_mode:
+# JAR Manifest:
+#  prism_mode:
+# JFlex:
+#  prism_mode:
+# JSON with Comments:
+#  prism_mode:
+# JSONLD:
+#  prism_mode:
+# JSONiq:
+#  prism_mode:
+# Jasmin:
+#  prism_mode:
+# Java Properties:
+#  prism_mode:
+# Java Server Pages:
+#  prism_mode:
+# JavaScript+ERB:
+#  prism_mode:
+# Jest Snapshot:
+#  prism_mode:
+# Jinja:
+#  prism_mode:
+# Jison:
+#  prism_mode:
+# Jison Lex:
+#  prism_mode:
+# Jsonnet:
+#  prism_mode:
+# Jupyter Notebook:
+#  prism_mode:
+# KRL:
+#  prism_mode:
+# Kaitai Struct:
+#  prism_mode:
+# KakouneScript:
+#  prism_mode:
+# KiCad Layout:
+#  prism_mode:
+# KiCad Legacy Layout:
+#  prism_mode:
+# KiCad Schematic:
+#  prism_mode:
+# Kit:
+#  prism_mode:
+# LFE:
+#  prism_mode:
+# LSL:
+#  prism_mode:
+# LTspice Symbol:
+#  prism_mode:
+# LabVIEW:
+#  prism_mode:
+# Lark:
+#  prism_mode:
+# Lasso:
+#  prism_mode:
+# Lean:
+#  prism_mode:
+# Lex:
+#  prism_mode:
+# Limbo:
+#  prism_mode:
+# Linker Script:
+#  prism_mode:
+# Linux Kernel Module:
+#  prism_mode:
+# Literate Agda:
+#  prism_mode:
+# Literate CoffeeScript:
+#  prism_mode:
+# Literate Haskell:
+#  prism_mode:
+# Logos:
+#  prism_mode:
+# Logtalk:
+#  prism_mode:
+# LookML:
+#  prism_mode:
+# LoomScript:
+#  prism_mode:
+# M:
+#  prism_mode:
+# M4:
+#  prism_mode:
+# M4Sugar:
+#  prism_mode:
+# MLIR:
+#  prism_mode:
+# MQL4:
+#  prism_mode:
+# MQL5:
+#  prism_mode:
+# MTML:
+#  prism_mode:
+# MUF:
+#  prism_mode:
+# Macaulay2:
+#  prism_mode:
+# Mako:
+#  prism_mode:
+# Marko:
+#  prism_mode:
+# Mask:
+#  prism_mode:
+# Mathematica:
+#  prism_mode:
+Maven POM:
+  prism_mode: xml
+# Max:
+#  prism_mode:
+# Mercury:
+#  prism_mode:
+# Meson:
+#  prism_mode:
+# Metal:
+#  prism_mode:
+# Microsoft Developer Studio Project:
+#  prism_mode:
+# Microsoft Visual Studio Solution:
+#  prism_mode:
+# MiniD:
+#  prism_mode:
+# Mirah:
+#  prism_mode:
+# Modelica:
+#  prism_mode:
+# Modula-2:
+#  prism_mode:
+# Modula-3:
+#  prism_mode:
+# Module Management System:
+#  prism_mode:
+# Moocode:
+#  prism_mode:
+# Motorola 68K Assembly:
+#  prism_mode:
+# Muse:
+#  prism_mode:
+# Mustache:
+#  prism_mode:
+# Myghty:
+#  prism_mode:
+# NASL:
+#  prism_mode:
+# NCL:
+#  prism_mode:
+# NL:
+#  prism_mode:
+# NPM Config:
+#  prism_mode:
+# NWScript:
+#  prism_mode:
+# Nearley:
+#  prism_mode:
+# Nemerle:
+#  prism_mode:
+# NetLinx:
+#  prism_mode:
+# NetLinx+ERB:
+#  prism_mode:
+# NetLogo:
+#  prism_mode:
+# NewLisp:
+#  prism_mode:
+# Nextflow:
+#  prism_mode:
+# Ninja:
+#  prism_mode:
+# Nit:
+#  prism_mode:
+# Nu:
+#  prism_mode:
+# NumPy:
+#  prism_mode:
+# Nunjucks:
+#  prism_mode:
+# ObjDump:
+#  prism_mode:
+# Object Data Instance Notation:
+#  prism_mode:
+# ObjectScript:
+#  prism_mode:
+Objective-C:
+  prism_mode: objectivec
+# Objective-C++:
+#  prism_mode:
+# Objective-J:
+#  prism_mode:
+# Odin:
+#  prism_mode:
+# Omgrofl:
+#  prism_mode:
+# Opa:
+#  prism_mode:
+# Opal:
+#  prism_mode:
+# Open Policy Agent:
+#  prism_mode:
+# OpenEdge ABL:
+#  prism_mode:
+# OpenRC runscript:
+#  prism_mode:
+# OpenSCAD:
+#  prism_mode:
+# OpenStep Property List:
+#  prism_mode:
+# OpenType Feature File:
+#  prism_mode:
+# Org:
+#  prism_mode:
+# Ox:
+#  prism_mode:
+# Oxygene:
+#  prism_mode:
+# P4:
+#  prism_mode:
+# PEG.js:
+#  prism_mode:
+# PLpgSQL:
+#  prism_mode:
+# POV-Ray SDL:
+#  prism_mode:
+# Pan:
+#  prism_mode:
+# Papyrus:
+#  prism_mode:
+# Parrot:
+#  prism_mode:
+# Parrot Assembly:
+#  prism_mode:
+# Parrot Internal Representation:
+#  prism_mode:
+# Pawn:
+#  prism_mode:
+# Pep8:
+#  prism_mode:
+# Pic:
+#  prism_mode:
+# Pickle:
+#  prism_mode:
+# PicoLisp:
+#  prism_mode:
+# PigLatin:
+#  prism_mode:
+# Pike:
+#  prism_mode:
+# PlantUML:
+#  prism_mode:
+# Pod:
+#  prism_mode:
+# Pod 6:
+#  prism_mode:
+# PogoScript:
+#  prism_mode:
+# Pony:
+#  prism_mode:
+# PostCSS:
+#  prism_mode:
+# PostScript:
+#  prism_mode:
+# PowerBuilder:
+#  prism_mode:
+# Prisma:
+#  prism_mode:
+# Proguard:
+#  prism_mode:
+# Propeller Spin:
+#  prism_mode:
+# Protocol Buffer:
+#  prism_mode:
+# Public Key:
+#  prism_mode:
+# Pure Data:
+#  prism_mode:
+# Python console:
+#  prism_mode:
+# Python traceback:
+#  prism_mode:
+# Q#:
+#  prism_mode:
+# QMake:
+#  prism_mode:
+# Qt Script:
+#  prism_mode:
+# Quake:
+#  prism_mode:
+# RAML:
+#  prism_mode:
+# RDoc:
+#  prism_mode:
+# REALbasic:
+#  prism_mode:
+# REXX:
+#  prism_mode:
+# RMarkdown:
+#  prism_mode:
+# RPC:
+#  prism_mode:
+# RPM Spec:
+#  prism_mode:
+# RUNOFF:
+#  prism_mode:
+# Ragel:
+#  prism_mode:
+# Raku:
+#  prism_mode:
+# Rascal:
+#  prism_mode:
+# Raw token data:
+#  prism_mode:
+# ReScript:
+#  prism_mode:
+# Readline Config:
+#  prism_mode:
+# Rebol:
+#  prism_mode:
+# Record Jar:
+#  prism_mode:
+# Red:
+#  prism_mode:
+# Redcode:
+#  prism_mode:
+# Redirect Rules:
+#  prism_mode:
+# Regular Expression:
+#  prism_mode:
+# Ren'Py:
+#  prism_mode:
+# RenderScript:
+#  prism_mode:
+# Rich Text Format:
+#  prism_mode:
+# Ring:
+#  prism_mode:
+# Riot:
+#  prism_mode:
+# Roff:
+#  prism_mode:
+# Roff Manpage:
+#  prism_mode:
+# Rouge:
+#  prism_mode:
+# SELinux Policy:
+#  prism_mode:
+# SMT:
+#  prism_mode:
+# SQLPL:
+#  prism_mode:
+# SRecode Template:
+#  prism_mode:
+# SSH Config:
+#  prism_mode:
+# STON:
+#  prism_mode:
+# SVG:
+#  prism_mode:
+# SWIG:
+#  prism_mode:
+# Sage:
+#  prism_mode:
+# SaltStack:
+#  prism_mode:
+# Scaml:
+#  prism_mode:
+# Scilab:
+#  prism_mode:
+# Self:
+#  prism_mode:
+# ShaderLab:
+#  prism_mode:
+Shell:
+  prism_mode: bash
+# ShellSession:
+#  prism_mode:
+# Shen:
+#  prism_mode:
+# Sieve:
+#  prism_mode:
+# Singularity:
+#  prism_mode:
+# Slash:
+#  prism_mode:
+# Slice:
+#  prism_mode:
+# Slim:
+#  prism_mode:
+# SmPL:
+#  prism_mode:
+# Soong:
+#  prism_mode:
+# SourcePawn:
+#  prism_mode:
+# Spline Font Database:
+#  prism_mode:
+# Standard ML:
+#  prism_mode:
+# Starlark:
+#  prism_mode:
+# Stata:
+#  prism_mode:
+# StringTemplate:
+#  prism_mode:
+# SubRip Text:
+#  prism_mode:
+# SugarSS:
+#  prism_mode:
+# SuperCollider:
+#  prism_mode:
+# Svelte:
+#  prism_mode:
+# SystemVerilog:
+#  prism_mode:
+# TI Program:
+#  prism_mode:
+# TLA:
+#  prism_mode:
+# TSQL:
+#  prism_mode:
+# TSV:
+#  prism_mode:
+# TXL:
+#  prism_mode:
+# Tcsh:
+#  prism_mode:
+# TeX:
+#  prism_mode:
+# Tea:
+#  prism_mode:
+# Terra:
+#  prism_mode:
+# Texinfo:
+#  prism_mode:
+# Text:
+#  prism_mode:
+# TextMate Properties:
+#  prism_mode:
+# Thrift:
+#  prism_mode:
+# Turing:
+#  prism_mode:
+# Type Language:
+#  prism_mode:
+# Unified Parallel C:
+#  prism_mode:
+# Unity3D Asset:
+#  prism_mode:
+# Unix Assembly:
+#  prism_mode:
+# Uno:
+#  prism_mode:
+# UrWeb:
+#  prism_mode:
+VBA:
+  prism_mode: visual-basic
+VBScript:
+  prism_mode: visual-basic
+# VCL:
+#  prism_mode:
+# Valve Data Format:
+#  prism_mode:
+# Vim Help File:
+#  prism_mode:
+Vim Script:
+  prism_mode: vim
+# Vim Snippet:
+#  prism_mode:
+Visual Basic .NET:
+  prism_mode: vbnet
+# Volt:
+#  prism_mode:
+# Vue:
+#  prism_mode:
+# Wavefront Material:
+#  prism_mode:
+# Wavefront Object:
+#  prism_mode:
+# Web Ontology Language:
+#  prism_mode:
+# WebAssembly:
+#  prism_mode:
+# WebIDL:
+#  prism_mode:
+# WebVTT:
+#  prism_mode:
+# Wget Config:
+#  prism_mode:
+# Wikitext:
+#  prism_mode:
+# Windows Registry Entries:
+#  prism_mode:
+# Wollok:
+#  prism_mode:
+# World of Warcraft Addon Data:
+#  prism_mode:
+# X BitMap:
+#  prism_mode:
+# X Font Directory Index:
+#  prism_mode:
+# X PixMap:
+#  prism_mode:
+# X10:
+#  prism_mode:
+# XC:
+#  prism_mode:
+# XCompose:
+#  prism_mode:
+# XML:
+#  prism_mode:
+# XML Property List:
+#  prism_mode:
+# XPages:
+#  prism_mode:
+# XProc:
+#  prism_mode:
+# XS:
+#  prism_mode:
+# XSLT:
+#  prism_mode:
+# Xonsh:
+#  prism_mode:
+# Xtend:
+#  prism_mode:
+# YARA:
+#  prism_mode:
+# YASnippet:
+#  prism_mode:
+# Yacc:
+#  prism_mode:
+# ZAP:
+#  prism_mode:
+# ZIL:
+#  prism_mode:
+# Zeek:
+#  prism_mode:
+# ZenScript:
+#  prism_mode:
+# Zephir:
+#  prism_mode:
+# Zimpl:
+#  prism_mode:
+# cURL Config:
+#  prism_mode:
+# desktop:
+#  prism_mode:
+# dircolors:
+#  prism_mode:
+# eC:
+#  prism_mode:
+# edn:
+#  prism_mode:
+# fish:
+#  prism_mode:
+# mIRC Script:
+#  prism_mode:
+# mcfunction:
+#  prism_mode:
+# mupad:
+#  prism_mode:
+# nanorc:
+#  prism_mode:
+# nesC:
+#  prism_mode:
+# ooc:
+#  prism_mode:
+# reStructuredText:
+#  prism_mode:
+# robots.txt:
+#  prism_mode:
+# sed:
+#  prism_mode:
+# wdl:
+#  prism_mode:
+# wisp:
+#  prism_mode:
+# xBase:
+#  prism_mode:
+
+ABAP:
+  prism_mode: "abap"
+ABNF:
+  prism_mode: "abnf"
+AL:
+  prism_mode: "al"
+APL:
+  prism_mode: "apl"
+ActionScript:
+  prism_mode: "actionscript"
+Ada:
+  prism_mode: "ada"
+Agda:
+  prism_mode: "agda"
+ApacheConf:
+  prism_mode: "apacheconf"
+Apex:
+  prism_mode: "apex"
+AppleScript:
+  prism_mode: "applescript"
+AsciiDoc:
+  prism_mode: "asciidoc"
+AutoHotkey:
+  prism_mode: "autohotkey"
+AutoIt:
+  prism_mode: "autoit"
+BASIC:
+  prism_mode: "basic"
+Bicep:
+  prism_mode: "bicep"
+Bison:
+  prism_mode: "bison"
+Brainfuck:
+  prism_mode: "brainfuck"
+Brightscript:
+  prism_mode: "brightscript"
+C:
+  prism_mode: "c"
+CIL:
+  prism_mode: "cil"
+CMake:
+  prism_mode: "cmake"
+COBOL:
+  prism_mode: "cobol"
+CSS:
+  prism_mode: "css"
+CSV:
+  prism_mode: "csv"
+Clojure:
+  prism_mode: "clojure"
+CoffeeScript:
+  prism_mode: "coffeescript"
+Coq:
+  prism_mode: "coq"
+Crystal:
+  prism_mode: "crystal"
+D:
+  prism_mode: "d"
+Dart:
+  prism_mode: "dart"
+DataWeave:
+  prism_mode: "dataweave"
+Dhall:
+  prism_mode: "dhall"
+Diff:
+  prism_mode: "diff"
+EBNF:
+  prism_mode: "ebnf"
+EJS:
+  prism_mode: "ejs"
+EditorConfig:
+  prism_mode: "editorconfig"
+Eiffel:
+  prism_mode: "eiffel"
+Elixir:
+  prism_mode: "elixir"
+Elm:
+  prism_mode: "elm"
+Erlang:
+  prism_mode: "erlang"
+Factor:
+  prism_mode: "factor"
+Fortran:
+  prism_mode: "fortran"
+GAP:
+  prism_mode: "gap"
+GDScript:
+  prism_mode: "gdscript"
+GEDCOM:
+  prism_mode: "gedcom"
+GLSL:
+  prism_mode: "glsl"
+GN:
+  prism_mode: "gn"
+Gherkin:
+  prism_mode: "gherkin"
+Go:
+  prism_mode: "go"
+GraphQL:
+  prism_mode: "graphql"
+Groovy:
+  prism_mode: "groovy"
+HCL:
+  prism_mode: "hcl"
+HLSL:
+  prism_mode: "hlsl"
+HTTP:
+  prism_mode: "http"
+Haml:
+  prism_mode: "haml"
+Handlebars:
+  prism_mode: "handlebars"
+Haskell:
+  prism_mode: "haskell"
+Haxe:
+  prism_mode: "haxe"
+INI:
+  prism_mode: "ini"
+Idris:
+  prism_mode: "idris"
+Io:
+  prism_mode: "io"
+J:
+  prism_mode: "j"
+JSON:
+  prism_mode: "json"
+JSON5:
+  prism_mode: "json5"
+Java:
+  prism_mode: "java"
+JavaScript:
+  prism_mode: "javascript"
+Jolie:
+  prism_mode: "jolie"
+Julia:
+  prism_mode: "julia"
+Kotlin:
+  prism_mode: "kotlin"
+Kusto:
+  prism_mode: "kusto"
+LLVM:
+  prism_mode: "llvm"
+LOLCODE:
+  prism_mode: "lolcode"
+Latte:
+  prism_mode: "latte"
+Less:
+  prism_mode: "less"
+LilyPond:
+  prism_mode: "lilypond"
+Liquid:
+  prism_mode: "liquid"
+LiveScript:
+  prism_mode: "livescript"
+Lua:
+  prism_mode: "lua"
+MATLAB:
+  prism_mode: "matlab"
+MAXScript:
+  prism_mode: "maxscript"
+Makefile:
+  prism_mode: "makefile"
+Markdown:
+  prism_mode: "markdown"
+Monkey:
+  prism_mode: "monkey"
+MoonScript:
+  prism_mode: "moonscript"
+NEON:
+  prism_mode: "neon"
+NSIS:
+  prism_mode: "nsis"
+Nginx:
+  prism_mode: "nginx"
+Nim:
+  prism_mode: "nim"
+Nix:
+  prism_mode: "nix"
+OCaml:
+  prism_mode: "ocaml"
+OpenCL:
+  prism_mode: "opencl"
+OpenQASM:
+  prism_mode: "openqasm"
+Oz:
+  prism_mode: "oz"
+PHP:
+  prism_mode: "php"
+PLSQL:
+  prism_mode: "plsql"
+Pascal:
+  prism_mode: "pascal"
+Perl:
+  prism_mode: "perl"
+PowerShell:
+  prism_mode: "powershell"
+Processing:
+  prism_mode: "processing"
+Prolog:
+  prism_mode: "prolog"
+Pug:
+  prism_mode: "pug"
+Puppet:
+  prism_mode: "puppet"
+PureBasic:
+  prism_mode: "purebasic"
+PureScript:
+  prism_mode: "purescript"
+Python:
+  prism_mode: "python"
+QML:
+  prism_mode: "qml"
+R:
+  prism_mode: "r"
+Racket:
+  prism_mode: "racket"
+Reason:
+  prism_mode: "reason"
+RobotFramework:
+  prism_mode: "robotframework"
+Ruby:
+  prism_mode: "ruby"
+Rust:
+  prism_mode: "rust"
+SAS:
+  prism_mode: "sas"
+SCSS:
+  prism_mode: "scss"
+SPARQL:
+  prism_mode: "sparql"
+SQF:
+  prism_mode: "sqf"
+SQL:
+  prism_mode: "sql"
+Sass:
+  prism_mode: "sass"
+Scala:
+  prism_mode: "scala"
+Scheme:
+  prism_mode: "scheme"
+Smali:
+  prism_mode: "smali"
+Smalltalk:
+  prism_mode: "smalltalk"
+Smarty:
+  prism_mode: "smarty"
+Solidity:
+  prism_mode: "solidity"
+Squirrel:
+  prism_mode: "squirrel"
+Stan:
+  prism_mode: "stan"
+Stylus:
+  prism_mode: "stylus"
+Swift:
+  prism_mode: "swift"
+TOML:
+  prism_mode: "toml"
+TSX:
+  prism_mode: "tsx"
+Tcl:
+  prism_mode: "tcl"
+Textile:
+  prism_mode: "textile"
+Turtle:
+  prism_mode: "turtle"
+Twig:
+  prism_mode: "twig"
+TypeScript:
+  prism_mode: "typescript"
+UnrealScript:
+  prism_mode: "unrealscript"
+V:
+  prism_mode: "v"
+VHDL:
+  prism_mode: "vhdl"
+Vala:
+  prism_mode: "vala"
+Verilog:
+  prism_mode: "verilog"
+XQuery:
+  prism_mode: "xquery"
+Xojo:
+  prism_mode: "xojo"
+YAML:
+  prism_mode: "yaml"
+YANG:
+  prism_mode: "yang"
+Zig:
+  prism_mode: "zig"
+jq:
+  prism_mode: "jq"
+q:
+  prism_mode: "q"

@@ -104,4 +104,13 @@ public class ContentTypeTest {
     assertFalse(contentType.isText());
   }
 
+  @Test
+  public void testGradleReturnsPrismMode() {
+    assertEquals("groovy", Language.GRADLE.getPrismMode().get());
+  }
+
+  @Test
+  public void testRustReturnsPrismMode() {
+    assertEquals("rust", Language.RUST.getPrismMode().get());
+  }
 }

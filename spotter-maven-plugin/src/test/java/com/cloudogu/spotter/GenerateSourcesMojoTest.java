@@ -25,6 +25,7 @@ package com.cloudogu.spotter;
 
 import com.google.common.io.Resources;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.shared.model.fileset.FileSet;
 import org.junit.AssumptionViolatedException;
 import org.junit.Before;
 import org.junit.Rule;
@@ -46,7 +47,6 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -91,8 +91,8 @@ public class GenerateSourcesMojoTest {
 
   @Test
   public void testExecuteWithPatchFile() throws Exception {
-    File patchFile = readPatchFile("com/cloudogu/spotter/prismPatch.yml");
-    mojo.setLanguagePatchFiles(Collections.singletonList(patchFile));
+    FileSet patchFile = readPatchFiles("prismPatch.yml");
+    mojo.setLanguagePatchFiles(patchFile);
 
     mojo.execute();
 
@@ -111,10 +111,8 @@ public class GenerateSourcesMojoTest {
 
   @Test
   public void testExecuteWithMultiplePatchFiles() throws Exception {
-    File prismPatchFile = readPatchFile("com/cloudogu/spotter/prismPatch.yml");
-    File acePatchFile = readPatchFile("com/cloudogu/spotter/acePatch.yml");
-
-    mojo.setLanguagePatchFiles(Arrays.asList(prismPatchFile, acePatchFile));
+    FileSet fs = readPatchFiles("prismPatch.yml", "acePatch.yml");
+    mojo.setLanguagePatchFiles(fs);
 
     mojo.execute();
 
@@ -126,9 +124,14 @@ public class GenerateSourcesMojoTest {
   }
 
   @SuppressWarnings("UnstableApiUsage")
-  private File readPatchFile(String resourceName) throws URISyntaxException {
-    URL acePatchUrl = Resources.getResource(resourceName);
-    return Paths.get(acePatchUrl.toURI()).toFile();
+  private FileSet readPatchFiles(String... resourceNames) throws URISyntaxException {
+    URL url = Resources.getResource("com/cloudogu/spotter");
+    File directory = Paths.get(url.toURI()).toFile();
+
+    FileSet fs = new FileSet();
+    fs.setDirectory(directory.getAbsolutePath());
+    fs.setIncludes(Arrays.asList(resourceNames));
+    return fs;
   }
 
   private void withGeneratedClass(ThrowingConsumer<Class<?>> consumer) throws Exception {

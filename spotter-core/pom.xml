@@ -84,7 +84,13 @@
         <artifactId>spotter-maven-plugin</artifactId>
         <version>${project.version}</version>
         <configuration>
-          <languagesVersion>v7.10.0</languagesVersion>
+          <languagesVersion>v7.17.0</languagesVersion>
+          <languagePatchFiles>
+            <directory>${project.basedir}/src/main/patches</directory>
+            <includes>
+              <include>**/*.yml</include>
+            </includes>
+          </languagePatchFiles>
         </configuration>
         <executions>
           <execution>

@@ -37,6 +37,8 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.shared.model.fileset.FileSet;
+import org.apache.maven.shared.model.fileset.util.FileSetManager;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -45,10 +47,13 @@ import java.net.URL;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Mojo for generating language enum from githubs linguist languages.yml file.
@@ -75,7 +80,7 @@ public class GenerateSourcesMojo extends AbstractMojo {
   private String languagesVersion;
 
   @Parameter
-  private List<File> languagePatchFiles;
+  private FileSet languagePatchFiles;
 
   @Parameter(readonly = true, required = true, defaultValue = "${project}")
   private MavenProject project;
@@ -101,7 +106,7 @@ public class GenerateSourcesMojo extends AbstractMojo {
   }
 
   @VisibleForTesting
-  void setLanguagePatchFiles(List<File> languagePatchFiles) {
+  void setLanguagePatchFiles(FileSet languagePatchFiles) {
     this.languagePatchFiles = languagePatchFiles;
   }
 
@@ -157,16 +162,28 @@ public class GenerateSourcesMojo extends AbstractMojo {
     ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-    if (languagePatchFiles != null && !languagePatchFiles.isEmpty()) {
+    List<File> patchFiles = getPatchFiles();
+    if (!patchFiles.isEmpty()) {
       JsonMerger merger = new JsonMerger(mapper);
       JsonMerger.MergeStage mergeStage = merger.fromJson(mapper.readTree(url));
-      for (File f : languagePatchFiles) {
+      for (File f : patchFiles) {
+        getLog().info("apply patch " + f);
         mergeStage.mergeWithJson(mapper.readTree(f));
       }
       return mergeStage.toObject(Languages.class);
     }
 
     return mapper.readValue(url, Languages.class);
+  }
+
+  private List<File> getPatchFiles() {
+    if (languagePatchFiles != null) {
+      FileSetManager fileSetManager = new FileSetManager();
+      String directory = languagePatchFiles.getDirectory();
+      String[] included = fileSetManager.getIncludedFiles(languagePatchFiles);
+      return Arrays.stream(included).map(fileName -> new File(directory, fileName)).collect(Collectors.toList());
+    }
+    return Collections.emptyList();
   }
 
   private Template readTemplate(String template) throws IOException {
