@@ -44,7 +44,7 @@ pipeline {
       }
       steps {
         // read version from brach, set it and commit it
-        sh "./mvnw versions:set -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false"
+        mvn "versions:set -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false"
         sh 'git add pom.xml */pom.xml'
         commit "release version ${releaseVersion}"
 
@@ -64,14 +64,14 @@ pipeline {
 
     stage('Check') {
       steps {
-        sh './mvnw test -Dlicense.skip=true'
+        mvn 'clean test'
         junit '*/target/surefire-reports/*.xml'
       }
     }
 
     stage('Build') {
       steps {
-        sh './mvnw install -Dlicense.skip=true'
+        mvn 'install'
         archiveArtifacts artifacts: 'spotter-core/target/*.jar'
       }
     }
@@ -95,7 +95,7 @@ pipeline {
                 parameters += " -Dsonar.branch.target=develop"
               }
             }
-            sh "./mvnw sonar:sonar ${parameters} -Dlicense.skip=true"
+            mvn " sonar:sonar ${parameters}"
           }
         }
       }
@@ -108,7 +108,7 @@ pipeline {
       }
       steps {
         withPublishEnvironment {
-          sh './mvnw deploy -Dlicense.skip=true'
+          mvn 'deploy'
         }
       }
     }
@@ -124,7 +124,7 @@ pipeline {
         sh 'git merge main'
 
         // set version to next development iteration
-        sh './mvnw versions:set -DnextSnapshot=true -DgenerateBackupPoms=false'
+        mvn 'versions:set -DnextSnapshot=true -DgenerateBackupPoms=false'
         sh 'git add pom.xml */pom.xml'
         commit 'prepare for next development iteration'
 
@@ -137,6 +137,20 @@ pipeline {
 
   }
 
+}
+
+void mvn(String command) {
+  // setting user home system property, should fix user prefs (?/.java/.prefs ...)
+  String args = "-Duser.home=${env.WORKSPACE}"
+
+  // we have to skip the license check, because the damn plugin checks the local maven repo (.m2)
+  args += " -Dlicense.skip=true"
+
+  if (isReleaseBuild()) {
+    args += " -DperformRelease"
+  }
+
+  sh "./mvnw ${args} ${command}"
 }
 
 void withPublishEnvironment(Closure<Void> closure) {
@@ -158,8 +172,12 @@ void tag(String version) {
   sh "git -c user.name='CES Marvin' -c user.email='cesmarvin@cloudogu.com' tag -m '${message}' ${version}"
 }
 
+boolean isReleaseBuild() {
+  return env.BRANCH_NAME.startsWith("release/")
+}
+
 String getReleaseVersion() {
-  return env.BRANCH_NAME.substring("release/".length());
+  return env.BRANCH_NAME.substring("release/".length())
 }
 
 void isBuildSuccess() {
