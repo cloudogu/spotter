@@ -1,9 +1,9 @@
 # Spotter
 
 [![Build Status](https://travis-ci.org/sdorra/spotter.svg?branch=master)](https://travis-ci.org/sdorra/spotter)
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.sdorra/spotter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spotter%22)
-[![Quality Gates](https://sonarcloud.io/api/project_badges/measure?project=com.github.sdorra%3Aspotter&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.sdorra%3Aspotter)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.github.sdorra%3Aspotter&metric=coverage)](https://sonarcloud.io/dashboard?id=com.github.sdorra%3Aspotter)
+[![Maven Central](https://img.shields.io/maven-central/v/com.cloudogu.spotter/spotter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spotter%22)
+[![Quality Gates](https://sonarcloud.io/api/project_badges/measure?project=com.cloudogu.spotter%3Aspotter&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.cloudogu.spotter%3Aspotter)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.cloudogu.spotter%3Aspotter&metric=coverage)](https://sonarcloud.io/dashboard?id=com.cloudogu.spotter%3Aspotter)
 
 Spotter is a library which is able to detect the content type of a file. 
 It is also able to detect the programming language of source files. 
@@ -17,13 +17,23 @@ E.g. for maven:
 
 ```xml
 <dependency>
-    <groupId>com.github.sdorra</groupId>
+    <groupId>com.cloudogu.spotter</groupId>
     <artifactId>spotter-core</artifactId>
     <version>x.y.z</version>
 </dependency>
 ```
 
-Use the latest version from maven central: [![Maven Central](https://img.shields.io/maven-central/v/com.github.sdorra/spotter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spotter%22)
+Use the latest version from maven central: [![Maven Central](https://img.shields.io/maven-central/v/com.cloudogu.spotter/spotter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spotter%22)
+
+For versions before 4.0.0 use the following coordinates:
+
+```xml
+<dependency>
+    <groupId>com.github.sdorra</groupId>
+    <artifactId>spotter-core</artifactId>
+    <version>x.y.z</version>
+</dependency>
+```
 
 ### Examples
 

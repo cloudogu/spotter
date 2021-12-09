@@ -26,13 +26,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.sdorra</groupId>
+    <groupId>com.cloudogu.spotter</groupId>
     <artifactId>spotter</artifactId>
     <version>3.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Spotter</name>
     <description>Content-Type and language recognition library</description>
-    <url>https://github.com/sdorra/spotter</url>
+    <url>https://github.com/cloudogu/spotter</url>
 
     <licenses>
         <license>
@@ -46,21 +46,21 @@
         <developer>
             <id>sdorra</id>
             <name>Sebastian Sdorra</name>
-            <email>s.sdorra@gmail.com</email>
+            <email>sebastian.sdorra@cloudogu.com</email>
             <timezone>Europe/Berlin</timezone>
         </developer>
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:sdorra/spotter.git</connection>
-        <developerConnection>scm:git:git@github.com:sdorra/spotter.git</developerConnection>
-        <url>git@github.com:sdorra/spotter.git</url>
+        <connection>scm:git:git@github.com:cloudogu/spotter.git</connection>
+        <developerConnection>scm:git:git@github.com:cloudogu/spotter.git</developerConnection>
+        <url>git@github.com:cloudogu/spotter.git</url>
         <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/sdorra/spotter/issues</url>
+        <url>https://github.com/cloudogu/spotter/issues</url>
     </issueManagement>
 
     <modules>
