@@ -29,7 +29,7 @@
 
     <groupId>com.cloudogu.spotter</groupId>
     <artifactId>spotter</artifactId>
-    <version>3.0.2-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Spotter</name>
     <description>Content-Type and language recognition library</description>
