@@ -63,6 +63,7 @@ public enum Language {
 
     public static final String VERSION = "{{ version }}";
 
+    private static final Map<String, Language> BY_NAME = new HashMap<>();
     private static final LanguageMap BY_FILENAME = new LanguageMap();
     private static final LanguageMap BY_EXTENSION = new LanguageMap();
     private static final LanguageMap BY_ALIAS = new LanguageMap();
@@ -70,6 +71,7 @@ public enum Language {
 
     static {
         for (Language language : values()) {
+            BY_NAME.put(language.name, language);
             for ( String extension : language.extensions ) {
                 BY_EXTENSION.put(extension, language);
             }
@@ -86,6 +88,10 @@ public enum Language {
                 BY_INTERPRETER.put(interpreter, language);
             }
         }
+    }
+
+    public static Optional<Language> getByName(String name) {
+        return Optional.ofNullable(BY_NAME.get(name));
     }
 
     public static List<Language> getByFilename(String filename) {

@@ -50,6 +50,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -86,6 +87,11 @@ public class GenerateSourcesMojoTest {
       assertTrue(languageClass.isEnum());
       assertEquals("v1.0.0", languageClass.getDeclaredField("VERSION").get(null));
       assertEquals(5, languageClass.getEnumConstants().length);
+
+      Method getByName = languageClass.getMethod("getByName", String.class);
+      Optional<?> java = (Optional<?>) getByName.invoke(null, "Java");
+      assertNotNull(java);
+      assertTrue(java.isPresent());
     });
   }
 
