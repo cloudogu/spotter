@@ -64,14 +64,14 @@ pipeline {
 
     stage('Check') {
       steps {
-        sh './mvnw test'
+        sh './mvnw test -Dlicense.skip=true'
         junit '*/target/surefire-reports/*.xml'
       }
     }
 
     stage('Build') {
       steps {
-        sh './mvnw install'
+        sh './mvnw install -Dlicense.skip=true'
         archiveArtifacts artifacts: 'spotter-core/target/*.jar'
       }
     }
@@ -95,7 +95,7 @@ pipeline {
                 parameters += " -Dsonar.branch.target=develop"
               }
             }
-            sh "./mvnw sonar:sonar ${parameters}"
+            sh "./mvnw sonar:sonar ${parameters} -Dlicense.skip=true"
           }
         }
       }
@@ -108,7 +108,7 @@ pipeline {
       }
       steps {
         withPublishEnvironment {
-          sh './mvnw deploy'
+          sh './mvnw deploy -Dlicense.skip=true'
         }
       }
     }
