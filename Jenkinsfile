@@ -71,7 +71,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        mvn 'install'
+        mvn 'install -DskipTests'
         archiveArtifacts artifacts: 'spotter-core/target/*.jar'
       }
     }
@@ -107,8 +107,9 @@ pipeline {
         expression { return isBuildSuccess() }
       }
       steps {
-        withPublishEnvironment {
-          mvn 'deploy'
+        withPublishEnvironment { args ->
+          // TODO create settings.xml and pass settings
+          mvn "clean deploy -DskipTests ${args}"
         }
       }
     }
@@ -146,20 +147,34 @@ void mvn(String command) {
   // we have to skip the license check, because the damn plugin checks the local maven repo (.m2)
   args += " -Dlicense.skip=true"
 
-  if (isReleaseBuild()) {
-    args += " -DperformRelease"
-  }
-
-  sh "./mvnw ${args} ${command}"
+  sh "./mvnw --batch-mode -V ${args} ${command}"
 }
 
 void withPublishEnvironment(Closure<Void> closure) {
   withCredentials([
-    usernamePassword(credentialsId: 'mavenCentral-acccessToken', usernameVariable: 'ORG_GRADLE_PROJECT_sonatypeUsername', passwordVariable: 'ORG_GRADLE_PROJECT_sonatypePassword'),
-    file(credentialsId: 'oss-gpg-secring', variable: 'GPG_KEY_RING'),
-    usernamePassword(credentialsId: 'oss-keyid-and-passphrase', usernameVariable: 'GPG_KEY_ID', passwordVariable: 'GPG_KEY_PASSWORD')
+    usernamePassword(credentialsId: 'mavenCentral-acccessToken', usernameVariable: 'MAVEN_CENTRAL_USERNAME', passwordVariable: 'MAVEN_CENTRAL_PASSWORD'),
+    file(credentialsId: 'mavenCentral-secretKey-asc-file', variable: 'ascFile'),
+    string(credentialsId: 'mavenCentral-secretKey-Passphrase', variable: 'passphrase')
   ]) {
-    closure.call()
+    String settingsXmlPath = "${env.WORKSPACE}/.jenkins-settings.xml"
+    writeFile file: settingsXmlPath, text: """
+<settings>
+  <servers>
+    <server>
+      <id>ossrh</id>
+      <username>\${env.MAVEN_CENTRAL_USERNAME}</username>
+      <password>\${env.MAVEN_CENTRAL_PASSWORD}</password>
+    </server>
+  </servers>
+</settings>
+    """
+
+    String args = " --settings ${settingsXmlPath} -DperformRelease"
+
+    withEnv(["PGP_SECRETKEY=keyfile:${env.ascFile}",
+             "PGP_PASSPHRASE=literal:${env.passphrase}"]) {
+    closure.call(args)
+    }
   }
 }
 
@@ -170,10 +185,6 @@ void commit(String message) {
 void tag(String version) {
   String message = "Release version ${version}"
   sh "git -c user.name='CES Marvin' -c user.email='cesmarvin@cloudogu.com' tag -m '${message}' ${version}"
-}
-
-boolean isReleaseBuild() {
-  return env.BRANCH_NAME.startsWith("release/")
 }
 
 String getReleaseVersion() {
