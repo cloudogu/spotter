@@ -31,12 +31,12 @@
   <parent>
     <groupId>com.cloudogu.spotter</groupId>
     <artifactId>spotter</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
+    <version>4.0.0</version>
   </parent>
 
   <groupId>com.cloudogu.spotter</groupId>
   <artifactId>spotter-maven-plugin</artifactId>
-  <version>4.0.0-SNAPSHOT</version>
+  <version>4.0.0</version>
   <packaging>maven-plugin</packaging>
 
   <prerequisites>
