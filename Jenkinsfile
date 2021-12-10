@@ -64,7 +64,7 @@ pipeline {
 
     stage('Check') {
       steps {
-        mvn 'clean test'
+        mvn 'clean org.jacoco:jacoco-maven-plugin:0.8.5:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.5:report -Dmaven.test.failure.ignore=true'
         junit '*/target/surefire-reports/*.xml'
       }
     }
@@ -108,7 +108,6 @@ pipeline {
       }
       steps {
         withPublishEnvironment { args ->
-          // TODO create settings.xml and pass settings
           mvn "clean deploy -DskipTests ${args}"
         }
       }
@@ -173,7 +172,7 @@ void withPublishEnvironment(Closure<Void> closure) {
 
     withEnv(["PGP_SECRETKEY=keyfile:${env.ascFile}",
              "PGP_PASSPHRASE=literal:${env.passphrase}"]) {
-    closure.call(args)
+      closure.call(args)
     }
   }
 }
