@@ -40,7 +40,7 @@ For versions before 4.0.0 use the following coordinates:
 Detect the content type and the programming language of a file:
 
 ```java
-ContentType contentType = ContentTypes.detect("com/github/sdorra/spotter/Language.java");
+ContentType contentType = ContentTypes.detect("com/cloudogu/spotter/Language.java");
 System.out.println("Content-Type: " + contentType);
 
 Optional<Language> language = contentType.getLanguage();
