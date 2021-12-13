@@ -271,8 +271,8 @@ C++:
 #  prism_mode:
 # Clarion:
 #  prism_mode:
-# Classic ASP:
-#  prism_mode:
+Classic ASP:
+  prism_mode: aspnet
 # Clean:
 #  prism_mode:
 # Click:
