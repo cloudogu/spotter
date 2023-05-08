@@ -50,7 +50,7 @@ pipeline {
 
         // fetch all remotes from origin
         sh 'git config "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"'
-        sh 'git fetch --all'
+        authGit 'SCM-Manager', 'fetch --all'
 
         // checkout, reset and merge
         sh "git checkout main"
@@ -79,9 +79,9 @@ pipeline {
     stage('SonarQube') {
       steps {
         sh 'git config --replace-all "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"'
-        sh 'git fetch origin develop'
+        authGit 'SCM-Manager', 'fetch origin develop'
         script {
-          withSonarQubeEnv('sonarcloud.io-cloudogu') {
+          withSonarQubeEnv('sonarcloud.io-scm') {
             String parameters = ' -Dsonar.organization=cloudogu'
             if (env.CHANGE_ID) {
               parameters += ' -Dsonar.pullrequest.provider=GitHub'
@@ -129,9 +129,9 @@ pipeline {
         commit 'prepare for next development iteration'
 
         // push changes back to remote repository
-        authGit 'cesmarvin-github', 'push origin main --tags'
-        authGit 'cesmarvin-github', 'push origin develop --tags'
-        authGit 'cesmarvin-github', "push origin :${env.BRANCH_NAME}"
+        authGit 'SCM-Manager', 'push origin main --tags'
+        authGit 'SCM-Manager', 'push origin develop --tags'
+        authGit 'SCM-Manager', "push origin :${env.BRANCH_NAME}"
       }
     }
 
