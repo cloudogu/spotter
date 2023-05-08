@@ -135,6 +135,16 @@ pipeline {
       }
     }
 
+    stage('Update GitHub') {
+      when {
+        branch pattern: 'main', comparator: 'GLOB'
+        expression { return isBuildSuccess() }
+      }
+      steps {
+        // push to GitHub
+        authGit 'cesmarvin', 'push https://github.com/cloudogu/spotter main -f'
+      }
+    }
   }
 
 }
