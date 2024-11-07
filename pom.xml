@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+
     Copyright (c) 2020 - present Cloudogu GmbH
 
     This program is free software: you can redistribute it and/or modify it under
@@ -13,6 +14,7 @@
 
     You should have received a copy of the GNU Affero General Public License
     along with this program. If not, see https://www.gnu.org/licenses/.
+
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -192,7 +194,7 @@
           <plugin>
             <groupId>com.mycila</groupId>
             <artifactId>license-maven-plugin</artifactId>
-            <version>4.1</version>
+            <version>4.6</version>
             <executions>
               <execution>
                 <goals>
@@ -204,7 +206,11 @@
             <configuration>
               <licenseSets>
                 <licenseSet>
-                  <header>LICENSE</header>
+                  <header>LICENSE-HEADER.txt</header>
+                  <excludes>
+                    <exclude>LICENSE.txt</exclude>
+                    <exclude>Jenkinsfile</exclude>
+                  </excludes>
                 </licenseSet>
               </licenseSets>
             </configuration>
