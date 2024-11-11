@@ -18,7 +18,7 @@ pipeline {
 
   agent {
     docker {
-      image 'openjdk:17'
+      image 'scmmanager/java-build:17.0.9_9'
       label 'docker'
     }
   }
@@ -56,7 +56,7 @@ pipeline {
 
     stage('Check') {
       steps {
-        mvn 'clean org.jacoco:jacoco-maven-plugin:0.8.5:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.5:report -Dmaven.test.failure.ignore=true'
+        mvn 'clean org.jacoco:jacoco-maven-plugin:0.8.12:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.12:report -Dmaven.test.failure.ignore=true'
         junit '*/target/surefire-reports/*.xml'
       }
     }
