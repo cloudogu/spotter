@@ -68,31 +68,6 @@ pipeline {
       }
     }
 
-    stage('SonarQube') {
-      steps {
-        sh 'git config --replace-all "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"'
-        authGit 'SCM-Manager', 'fetch origin develop'
-        script {
-          withSonarQubeEnv('sonarcloud.io-scm') {
-            String parameters = ' -Dsonar.organization=cloudogu'
-            if (env.CHANGE_ID) {
-              parameters += ' -Dsonar.pullrequest.provider=GitHub'
-              parameters += ' -Dsonar.pullrequest.github.repository=cloudogu/spotter'
-              parameters += " -Dsonar.pullrequest.key=${env.CHANGE_ID}"
-              parameters += " -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH}"
-              parameters += " -Dsonar.pullrequest.base=${env.CHANGE_TARGET}"
-            } else {
-              parameters += " -Dsonar.branch.name=${env.BRANCH_NAME}"
-              if (env.BRANCH_NAME != "develop") {
-                parameters += " -Dsonar.branch.target=develop"
-              }
-            }
-            mvn " sonar:sonar ${parameters}"
-          }
-        }
-      }
-    }
-
     stage('Deployment') {
       when {
         branch pattern: 'release/*', comparator: 'GLOB'
