@@ -35,14 +35,15 @@ pipeline {
         branch pattern: 'release/*', comparator: 'GLOB'
       }
       steps {
+        // fetch all remotes from origin
+        sh 'git config "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"'
+        authGit 'SCM-Manager', 'fetch --all'
+        sh "git checkout ${env.BRANCH_NAME}"
+
         // read version from brach, set it and commit it
         mvn "versions:set -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false"
         sh 'git add pom.xml */pom.xml'
         commit "release version ${releaseVersion}"
-
-        // fetch all remotes from origin
-        sh 'git config "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"'
-        authGit 'SCM-Manager', 'fetch --all'
 
         // checkout, reset and merge
         sh "git checkout main"
