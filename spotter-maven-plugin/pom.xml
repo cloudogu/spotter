@@ -26,10 +26,10 @@
     <version>4.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.cloudogu.spotter</groupId>
   <artifactId>spotter-maven-plugin</artifactId>
   <version>4.0.1-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
+  <name>Spotter Maven Plugin</name>
 
   <prerequisites>
     <maven>3.0.0</maven>

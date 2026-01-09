@@ -26,9 +26,9 @@
     <version>4.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.cloudogu.spotter</groupId>
   <artifactId>spotter-core</artifactId>
   <version>4.0.1-SNAPSHOT</version>
+  <name>Spotter Core Library</name>
 
   <dependencies>
 
