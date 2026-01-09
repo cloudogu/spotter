@@ -36,9 +36,11 @@ pipeline {
       }
       steps {
         // fetch all remotes from origin
+        sh "git tag -d ${releaseVersion} || true"
         sh 'git config "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"'
-        authGit 'SCM-Manager', 'fetch --all'
+        authGit 'SCM-Manager', 'fetch --all --tags'
         sh "git checkout ${env.BRANCH_NAME}"
+        sh "git reset --hard origin/${env.BRANCH_NAME}"
 
         // read version from brach, set it and commit it
         mvn "versions:set -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false"
