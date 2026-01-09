@@ -140,7 +140,7 @@ void withPublishEnvironment(Closure<Void> closure) {
 <settings>
   <servers>
     <server>
-      <id>ossrh</id>
+      <id>central</id>
       <username>\${env.MAVEN_CENTRAL_USERNAME}</username>
       <password>\${env.MAVEN_CENTRAL_PASSWORD}</password>
     </server>
