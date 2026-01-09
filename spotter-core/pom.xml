@@ -23,11 +23,11 @@
   <parent>
     <groupId>com.cloudogu.spotter</groupId>
     <artifactId>spotter</artifactId>
-    <version>4.0.1-SNAPSHOT</version>
+    <version>4.1.0</version>
   </parent>
 
   <artifactId>spotter-core</artifactId>
-  <version>4.0.1-SNAPSHOT</version>
+  <version>4.1.0</version>
   <name>Spotter Core Library</name>
 
   <dependencies>
