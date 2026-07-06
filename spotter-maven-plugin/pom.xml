@@ -178,7 +178,7 @@
 
     <jackson.version>2.12.1</jackson.version>
     <handlebars.version>4.4.0</handlebars.version>
-    <guava.version>29.0-jre</guava.version>
+    <guava.version>32.0.0-android</guava.version>
   </properties>
 
 </project>
